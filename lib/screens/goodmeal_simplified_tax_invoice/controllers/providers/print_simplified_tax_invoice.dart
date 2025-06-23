@@ -22,6 +22,10 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
       List<SimplifiedTaxInvoiceModel> response = await ref.read(apiSimplifiedTaxInvoice).get(body);
       return response;
     });
+    await genPDFFile();
+  }
+
+  Future<pw.Document?> genPDFFile() async {
     if (state.hasValue) {
       pw.Document pdfFile = pw.Document();
       bool showDiscounts = false;
@@ -57,6 +61,7 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
                 showPoints: showPoints,
               );
               pdfFile.addPage(page);
+              ref.read(listPageProvider.notifier).update((state) => [...state, page]);
               dataWidget = [];
             }
             if (i == detailList.length) {
@@ -70,6 +75,7 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
         if (kDebugMode) print('Error generating PDF: $e');
         if (kDebugMode) print('StackTrace generating---><: $stx');
       }
+      
       ref.read(filePdfSimplifiedTaxInvoiceProvider.notifier).state = pdfFile;
       // await Printing.sharePdf(bytes: await pdfFile.save());
       // await Printing.layoutPdf(onLayout: (format) async => pdfFile.save());
@@ -85,8 +91,10 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
         if (kDebugMode) print('StackTrace ------<>: $stx');
         ref.read(filePdfSimplifiedTaxInvoiceViewProvider.notifier).state = null;
       }
+      return pdfFile;
     } else {
       ref.read(filePdfSimplifiedTaxInvoiceViewProvider.notifier).state = null;
+      return null;
     }
   }
 
@@ -102,12 +110,7 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
     int remaining = maxPerPage - dataWidget.length;
 
     // กลุ่ม footer ตามลำดับ
-    final List<int> sections = [
-      footerSectionDiscounts,
-      footerSectionPaymentMethods,
-      footerSectionCategories,
-      footerSectionPoints,
-    ];
+    final List<int> sections = [footerSectionDiscounts, footerSectionPaymentMethods, footerSectionCategories, footerSectionPoints];
 
     List<List<bool>> pages = [];
     List<bool> currentPage = [false, false, false, false];
@@ -121,7 +124,6 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
         pages.add([...currentPage]);
         currentPage = [false, false, false, false];
         remaining = maxPerPage;
-
         // ลองใส่อีกรอบในหน้าใหม่
         if (sections[i] <= remaining) {
           currentPage[i] = true;
@@ -151,7 +153,6 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
     }
   }
 
-
   Future<void> addLastPage(SimplifiedTaxInvoiceModel element, pw.Document pdfFile, List<bool> listBool) async {
     element = element.copyWith(details: dataWidget);
     var page1 = await PDFGeneratorSimplifiedTaxInvoice().generate(
@@ -163,11 +164,14 @@ class SimplifiedTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<Simplif
     );
     dataWidget = [];
     pdfFile.addPage(page1);
+    ref.read(listPageProvider.notifier).update((state) => [...state, page1]);
   }
 }
 
-final simplifiedTaxInvoiceProvider =
-    StateNotifierProvider<SimplifiedTaxInvoiceNotifier, AsyncValue<List<SimplifiedTaxInvoiceModel>>>((ref) => SimplifiedTaxInvoiceNotifier(ref));
+final simplifiedTaxInvoiceProvider = StateNotifierProvider<SimplifiedTaxInvoiceNotifier, AsyncValue<List<SimplifiedTaxInvoiceModel>>>(
+  (ref) => SimplifiedTaxInvoiceNotifier(ref),
+);
 final filePdfSimplifiedTaxInvoiceProvider = StateProvider<pw.Document>((ref) => pw.Document());
 final filePdfSimplifiedTaxInvoiceViewProvider = StateProvider<Uint8List?>((ref) => null);
 final filePdfSimplifiedTaxInvoiceFileProvider = StateProvider<File?>((ref) => null);
+final listPageProvider = StateProvider<List<pw.Page>>((ref) => []);

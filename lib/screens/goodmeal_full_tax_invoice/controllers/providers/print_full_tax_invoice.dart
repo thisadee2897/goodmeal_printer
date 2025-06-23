@@ -5,6 +5,7 @@ import 'package:goodmeal_printer/apps/app_exports.dart';
 import 'package:goodmeal_printer/models/detail_tax_invoice_model.dart';
 import 'package:goodmeal_printer/models/full_tax_invoice_model.dart';
 import 'package:goodmeal_printer/screens/goodmeal_full_tax_invoice/controllers/apis/print_full_tax_invoice.dart';
+import 'package:goodmeal_printer/screens/goodmeal_simplified_tax_invoice/controllers/providers/print_simplified_tax_invoice.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../../views/widgets/pdf_for_report_hq_vat_postt_sale_widget.dart';
 
@@ -18,7 +19,7 @@ class FullTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<FullTaxInvoic
     }
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      List<FullTaxInvoiceModel> response = await ref.read(apiFullTaxInvoice).getDummy(body);
+      List<FullTaxInvoiceModel> response = await ref.read(apiFullTaxInvoice).get(body);
       return response;
     });
     if (state.hasValue) {
@@ -26,41 +27,26 @@ class FullTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<FullTaxInvoic
       // final company = ref.read(companyDataProvider);
       pw.Document pdfFile = pw.Document();
       List<DetailTaxInvoiceModel> dataWidget = [];
-
       try {
-        for (FullTaxInvoiceModel element in state.value!) {
+        for (FullTaxInvoiceModel element in state.value ?? []) {
+          // print("${element.header?.docuNo} ${element.header?.branchs}");
           List detailList = element.details?.map((e) => e).toList() ?? [];
           dataWidget = [];
           for (int i = 1; i <= detailList.length; i++) {
             dataWidget.add(detailList[i - 1]);
-            if (element.original == true) {
-              if (i % 10 == 0) {
+            if (i % 10 == 0) {
+              element = element.copyWith(details: dataWidget);
+              var page = await PDFGeneratorFullTaxInvoice().generate(dt: element, isOriginal: element.original ?? false, isCoppy: element.copy ?? false);
+              pdfFile.addPage(page);
+              dataWidget = [];
+            } else {
+              if (i == detailList.length) {
                 element = element.copyWith(details: dataWidget);
-                var page = await PDFGeneratorFullTaxInvoice().generate(dt: element, type: "ต้นฉบับ");
+                var page = await PDFGeneratorFullTaxInvoice().generate(dt: element, isOriginal: element.original ?? false, isCoppy: element.copy ?? false);
                 pdfFile.addPage(page);
-                dataWidget = [];
-              } else {
-                if (i == detailList.length) {
-                  element = element.copyWith(details: dataWidget);
-                  var page = await PDFGeneratorFullTaxInvoice().generate(dt: element, type: "ต้นฉบับ");
-                  pdfFile.addPage(page);
-                }
               }
             }
-            if (element.copy == true) {
-              if (i % 10 == 0) {
-                element = element.copyWith(details: dataWidget);
-                var page = await PDFGeneratorFullTaxInvoice().generate(dt: element, type: "สำเนา");
-                pdfFile.addPage(page);
-                dataWidget = [];
-              } else {
-                if (i == detailList.length) {
-                  element = element.copyWith(details: dataWidget);
-                  var page = await PDFGeneratorFullTaxInvoice().generate(dt: element, type: "สำเนา");
-                  pdfFile.addPage(page);
-                }
-              }
-            }
+            // await ref.read(simplifiedTaxInvoiceProvider.notifier).genPDFFile();
           }
         }
       } catch (e, stx) {
@@ -71,6 +57,10 @@ class FullTaxInvoiceNotifier extends StateNotifier<AsyncValue<List<FullTaxInvoic
       // await Printing.sharePdf(bytes: await pdfFile.save());
       // await Printing.layoutPdf(onLayout: (format) async => pdfFile.save());
       try {
+        List<dynamic> listPages = ref.read(listPageProvider);
+        for (var page in listPages) {
+          pdfFile.addPage(page);
+        }
         List<int> intFile = await pdfFile.save();
         String base64File = base64Encode(intFile);
         List<int> listPDF = base64Decode(base64File);
