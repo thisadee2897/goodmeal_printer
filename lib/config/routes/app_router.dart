@@ -704,7 +704,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               final companyBase64Id = state.uri.queryParameters['Y29tcGFueV9pZA'];
               final originalBase64 = state.uri.queryParameters['b3JpZ2luYWw'];
               final copyBase64 = state.uri.queryParameters['Y29weQ'];
-              final simplified = state.uri.queryParameters['c2ltcGxpZmllZF9pbmNvaW5n'] == 'dHJ1ZQ';
+              final simplified = state.uri.queryParameters['c2ltcGxpZmllZF9pbmNvaW5n'] == 'dHJ1ZQ==';
               List<String> salehdIdBase64List = state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
               List<int> salehdIdIds =
                   salehdIdBase64List
