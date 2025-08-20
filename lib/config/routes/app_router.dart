@@ -167,12 +167,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                   // var companyId = idFormBase64(id: companyBase64Id);
               // print(salehdIdIds.join(','));
               // print('companyId: $companyId');
+              ref.read(showProductReportSaleByGroupSavetimeProvider.notifier).state = 1;
               await ref.read(reportSaleByGroupSavetimeProvider.notifier).get(body: {
                       "start_date":"20250801",
                       "end_date":"20250831",
                       "master_branch_id":[127, 128, 136, 137, 138, 139, 141, 142, 143],
                       "master_product_group_id" : [720, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 627, 626, 628, 629, 630, 631, 632, 651, 696, 700, 704, 705, 706, 707, 708, 709, 710, 711, 717, 718, 722, 721],
-                      "type_view":2,// 
+                      "type_view":1,// 
                       "start_time":" 00:00",
                       "end_time":"23:59"
                   });
