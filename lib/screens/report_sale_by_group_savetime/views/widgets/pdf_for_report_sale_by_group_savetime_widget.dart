@@ -276,7 +276,7 @@ class PDFGeneratorReportSaleByGroupSavetime {
                                 child: pw.Padding(
                                   padding: const pw.EdgeInsets.only(left: 2, right: 2),
                                   child: pw.Text(
-                                    num.parse(item.productCost).digits(2),
+                                    num.parse(item.saledtNetamnt).digits(2),
                                     textAlign: pw.TextAlign.end,
                                     style: item.saledtNetamnt.contains('รวมทั้งสิ้น') ? textStyleBold : textStyleNormal,
                                   ),
@@ -290,7 +290,7 @@ class PDFGeneratorReportSaleByGroupSavetime {
                                 child: pw.Padding(
                                   padding: const pw.EdgeInsets.only(left: 2, right: 2),
                                   child: pw.Text(
-                                    num.parse(item.productCost).digits(2),
+                                    num.parse(item.saledtCost).digits(2),
                                     textAlign: pw.TextAlign.end,
                                     style: item.saledtCost.contains('รวมทั้งสิ้น') ? textStyleBold : textStyleNormal,
                                   ),

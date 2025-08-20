@@ -24,7 +24,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       String token = queryParameters['dG9rZW5SZXF1ZXN0'] ?? '';
       String base64DeCodeServer = idFormBase64(id: server);
       String base64DeCodeToken = idFormBase64(id: token);
-      // if (kDebugMode) print('server: $base64DeCodeServer');
+      if (kDebugMode) print('server: $base64DeCodeServer');
       // if (kDebugMode) print('token: $base64DeCodeToken');
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ref.read(serverUrlRequest.notifier).state = base64DeCodeServer;
