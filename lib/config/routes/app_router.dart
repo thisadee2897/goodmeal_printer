@@ -24,8 +24,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       String token = queryParameters['dG9rZW5SZXF1ZXN0'] ?? '';
       String base64DeCodeServer = idFormBase64(id: server);
       String base64DeCodeToken = idFormBase64(id: token);
-      // if (kDebugMode) print('server: $base64DeCodeServer');
-      // if (kDebugMode) print('token: $base64DeCodeToken');
+      if (kDebugMode) print('server: $base64DeCodeServer');
+      if (kDebugMode) print('token: $base64DeCodeToken');
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ref.read(serverUrlRequest.notifier).state = base64DeCodeServer;
         ref.read(tokenRequest.notifier).state = base64DeCodeToken;
@@ -156,28 +156,45 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         redirect: (context, state) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             try {
-                  // final companyBase64Id = state.uri.queryParameters['Y29tcGFueV9pZA'];
-                  // if (kDebugMode) print('companyBase64Id: $companyBase64Id');
-                  // List<String> salehdIdBase64List = state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
-                  // List<int> salehdIdIds =
-                  //     salehdIdBase64List
-                  //         .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
-                  //         .whereType<int>() // กรองค่า null ออก
-                  //         .toList();
-                  // var companyId = idFormBase64(id: companyBase64Id);
-              // print(salehdIdIds.join(','));
-              // print('companyId: $companyId');
-              ref.read(showProductReportSaleByGroupSavetimeProvider.notifier).state = 1;
-              await ref.read(reportSaleByGroupSavetimeProvider.notifier).get(body: {
-                      "start_date":"20250801",
-                      "end_date":"20250831",
-                      "master_branch_id":[127, 128, 136, 137, 138, 139, 141, 142, 143],
-                      "master_product_group_id" : [720, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 627, 626, 628, 629, 630, 631, 632, 651, 696, 700, 704, 705, 706, 707, 708, 709, 710, 711, 717, 718, 722, 721],
-                      "type_view":1,// 
-                      "start_time":" 00:00",
-                      "end_time":"23:59"
-                  });
-            } catch (e) {
+              final startDateBase64 = state.uri.queryParameters['c3RhcnRfZGF0ZV9pbmNvaW5n'];
+              final endDateBase64 = state.uri.queryParameters['ZW5kX2RhdGVfaW5jb2luZw'];
+              final masterBranchBase64List = state.uri.queryParametersAll['bWFzdGVyX2Jyb25jaF9pZA'] ?? [];
+              final masterProductGroupBase64List = state.uri.queryParametersAll['bWFzdGVyX3Byb2R1Y3RfZ3JvdXBfaWQ'] ?? [];
+              final typeViewBase64 = state.uri.queryParameters['dHlwZV92aWV3'] ?? '';
+              final startTimeBase64 = state.uri.queryParameters['c3RhcnRfVGltZV9pbmNvaW5n'] ?? '';
+              final endTimeBase64 = state.uri.queryParameters['ZW5kX1RpbWVfaW5jb2luZw'] ?? '';
+              List<int> masterBranchId =
+                  masterBranchBase64List
+                      .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                      .whereType<int>() // กรองค่า null ออก
+                      .toList();
+              List<int> masterProductGroupId =
+                  masterProductGroupBase64List
+                      .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                      .whereType<int>() // กรองค่า null ออก
+                      .toList();
+              String startDate = idFormBase64(id: startDateBase64);
+              String endDate = idFormBase64(id: endDateBase64);
+              String startTime = idFormBase64(id: startTimeBase64);
+              String endTime = idFormBase64(id: endTimeBase64);
+              int typeView = int.parse(idFormBase64(id: typeViewBase64).toString());
+              ref.read(showProductReportSaleByGroupSavetimeProvider.notifier).state = typeView;
+              await ref
+                  .read(reportSaleByGroupSavetimeProvider.notifier)
+                  .get(
+                    body: {
+                      "start_date": startDate,
+                      "end_date": endDate,
+                      "master_branch_id": masterBranchId,
+                      "master_product_group_id": masterProductGroupId,
+                      "type_view": typeView,
+                      "start_time": startTime,
+                      "end_time": endTime,
+                    },
+                  );
+            } catch (e,stx) {
+              print('error: $e');
+              print('stackTrace: $stx');
               ref.read(routerHelperProvider).goPath('/error');
               if (kDebugMode) print('error: $e');
               return;

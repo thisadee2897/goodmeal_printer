@@ -14,6 +14,7 @@ class ReportSaleByGroupSavetimeNotifier extends StateNotifier<AsyncValue<List<Br
   final Ref ref;
   List<DetailTaxInvoiceModel> dataWidget = [];
   Future<void> get({required Map<String, dynamic> body}) async {
+    print(jsonEncode(body));
     if (body.isEmpty) {
       state = const AsyncValue.data([]);
       return;
