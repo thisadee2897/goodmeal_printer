@@ -9,4 +9,6 @@ class Routes {
   static const String simplifiedTaxInvoiceScreen = '/simplified_tax_invoice';
   //full_tax_invoice
   static const String fullTaxInvoiceScreen = '/full_tax_invoice';
+  //ReportSaleByGroupSavetime
+  static const String reportSaleByGroupSavetimeScreen = '/report_sale_by_group_savetime';
 }

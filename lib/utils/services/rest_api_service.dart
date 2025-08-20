@@ -21,13 +21,9 @@ class ApiInterceptor extends Interceptor {
 
   @override
   Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    // String token = "ZVGQJZiJSuWLRvECu45CAdhqEVXsHLLTrgMFY4Y8jhb25LD7ePmkBjRBm7nrv6MvexUURgkpsoVGYJjJ4XkYQKo8YY2QJ7LWBuWTkBcZXUTxkhCoa8yP9pji96ov4JCv";
     String token = ref.read(tokenRequest);
     options.headers["x-access-token"] = token;
     options.headers["Accept-Language"] = "th";
-    // var lang = ref.read(languageProvider);
-    // options.queryParameters = {...options.queryParameters, "lang": lang};
-
     handler.next(options);
   }
 

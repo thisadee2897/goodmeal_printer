@@ -10,6 +10,8 @@ import 'package:goodmeal_printer/screens/goodmeal_report_hq_vat_postt_sale/contr
 import 'package:goodmeal_printer/screens/goodmeal_report_hq_vat_postt_sale/views/report_hq_vat_postt_sale_screen.dart';
 import 'package:goodmeal_printer/screens/goodmeal_simplified_tax_invoice/controllers/providers/print_simplified_tax_invoice.dart';
 import 'package:goodmeal_printer/screens/goodmeal_simplified_tax_invoice/views/report_simplified_tax_invoice_screen.dart';
+import 'package:goodmeal_printer/screens/report_sale_by_group_savetime/controllers/providers/report_sale_by_group_savetime.dart';
+import 'package:goodmeal_printer/screens/report_sale_by_group_savetime/views/report_simplified_tax_invoice_screen.dart';
 import 'route_config.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -147,6 +149,43 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         },
         pageBuilder: (context, state) {
           return const NoTransitionPage(child: FullTaxInvoiceScreen());
+        },
+      ),
+      GoRoute(
+        path: Routes.reportSaleByGroupSavetimeScreen,
+        redirect: (context, state) {
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            try {
+                  // final companyBase64Id = state.uri.queryParameters['Y29tcGFueV9pZA'];
+                  // if (kDebugMode) print('companyBase64Id: $companyBase64Id');
+                  // List<String> salehdIdBase64List = state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
+                  // List<int> salehdIdIds =
+                  //     salehdIdBase64List
+                  //         .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                  //         .whereType<int>() // กรองค่า null ออก
+                  //         .toList();
+                  // var companyId = idFormBase64(id: companyBase64Id);
+              // print(salehdIdIds.join(','));
+              // print('companyId: $companyId');
+              await ref.read(reportSaleByGroupSavetimeProvider.notifier).get(body: {
+                      "start_date":"20250801",
+                      "end_date":"20250831",
+                      "master_branch_id":[127, 128, 136, 137, 138, 139, 141, 142, 143],
+                      "master_product_group_id" : [720, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 627, 626, 628, 629, 630, 631, 632, 651, 696, 700, 704, 705, 706, 707, 708, 709, 710, 711, 717, 718, 722, 721],
+                      "type_view":2,// 
+                      "start_time":" 00:00",
+                      "end_time":"23:59"
+                  });
+            } catch (e) {
+              ref.read(routerHelperProvider).goPath('/error');
+              if (kDebugMode) print('error: $e');
+              return;
+            }
+          });
+          return;
+        },
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(child: ReportSaleByGroupSavetimeScreen());
         },
       ),
     ],
