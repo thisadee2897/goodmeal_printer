@@ -204,12 +204,13 @@ class PDFGeneratorReportSaleByGroupSavetime {
                             pw.SizedBox(
                               height: 18,
                               child: pw.Align(
-                                alignment: pw.Alignment.centerLeft,
+                                alignment: num.tryParse(item.productGroupName) != null ? pw.Alignment.center : pw.Alignment.centerLeft,
                                 child: pw.Padding(
                                   padding: const pw.EdgeInsets.only(left: 2, right: 2),
                                   child: pw.Text(
                                     item.productGroupName.toString(),
-                                    textAlign: pw.TextAlign.start,
+                                    //item.productGroupName ถ้าสามารถแปลงเป็นตัวเลขได้ ให้เป็น center
+                                    textAlign: num.tryParse(item.productGroupName) != null ? pw.TextAlign.center : pw.TextAlign.start,
                                     style: item.productGroupName.contains('รวมทั้งสิ้น') ? textStyleBold : textStyleNormal,
                                   ),
                                 ),
@@ -277,7 +278,7 @@ class PDFGeneratorReportSaleByGroupSavetime {
                                   child: pw.Text(
                                     num.parse(item.productCost).digits(2),
                                     textAlign: pw.TextAlign.end,
-                                    style: item.productGroupName.contains('รวมทั้งสิ้น') ? textStyleBold : textStyleNormal,
+                                    style: item.saledtNetamnt.contains('รวมทั้งสิ้น') ? textStyleBold : textStyleNormal,
                                   ),
                                 ),
                               ),
@@ -291,7 +292,7 @@ class PDFGeneratorReportSaleByGroupSavetime {
                                   child: pw.Text(
                                     num.parse(item.productCost).digits(2),
                                     textAlign: pw.TextAlign.end,
-                                    style: item.productGroupName.contains('รวมทั้งสิ้น') ? textStyleBold : textStyleNormal,
+                                    style: item.saledtCost.contains('รวมทั้งสิ้น') ? textStyleBold : textStyleNormal,
                                   ),
                                 ),
                               ),

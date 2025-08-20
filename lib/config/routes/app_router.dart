@@ -179,6 +179,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               String endTime = idFormBase64(id: endTimeBase64);
               int typeView = int.parse(idFormBase64(id: typeViewBase64).toString());
               ref.read(showProductReportSaleByGroupSavetimeProvider.notifier).state = typeView;
+              ref.read(endDateReportSaleByGroupSavetimeProvider.notifier).state = DateTime.parse(endDate);
+              ref.read(startDateReportSaleByGroupSavetimeProvider.notifier).state = DateTime.parse(startDate);
               await ref
                   .read(reportSaleByGroupSavetimeProvider.notifier)
                   .get(
@@ -192,9 +194,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                       "end_time": endTime,
                     },
                   );
-            } catch (e,stx) {
-              print('error: $e');
-              print('stackTrace: $stx');
+            } catch (e, stx) {
+              if (kDebugMode) print('error: $e');
+              if (kDebugMode) print('stackTrace: $stx');
               ref.read(routerHelperProvider).goPath('/error');
               if (kDebugMode) print('error: $e');
               return;
