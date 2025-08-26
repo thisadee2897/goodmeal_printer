@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:goodmeal_printer/apps/app_exports.dart';
 import 'package:goodmeal_printer/models/detail_tax_invoice_model.dart';
-import 'package:goodmeal_printer/screens/report_sale_by_group_savetime/views/widgets/pdf_for_report_sale_by_group_savetime_widget.dart';
+import 'package:goodmeal_printer/screens/goodmeal_report_sale_by_group_savetime/views/widgets/pdf_for_report_sale_by_group_savetime_widget.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../../models/branch_model_report_sale_by_group_savetime.dart';
 import '../../models/product_model_report_sale_by_group_savetime.dart';

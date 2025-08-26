@@ -11,4 +11,6 @@ class Routes {
   static const String fullTaxInvoiceScreen = '/full_tax_invoice';
   //ReportSaleByGroupSavetime
   static const String reportSaleByGroupSavetimeScreen = '/report_sale_by_group_savetime';
+  //CheckBalance
+  static const String checkBalanceScreen = '/check_balance';
 }

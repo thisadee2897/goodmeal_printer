@@ -43,6 +43,14 @@ extension DateTimeExtension on DateTime {
     String? languageCode = locale.languageCode;
     return DateFormat('HH:mm:ss', languageCode).format(this);
   }
+  String formatThaiDate() {
+    // แสดงเป็น พ.ศ.
+    String day = this.day.toString().padLeft(2, '0');
+    String monthName = DateFormat('MMMM', 'th').format(this);
+    String year = (this.year + 543).toString();
+    return '$day $monthName $year';
+  }
+
   get timeOnly => DateFormat('HH:mm:ss').format(this);
   get dateOnly => DateFormat('yyyy-MM-dd').format(this);
 }

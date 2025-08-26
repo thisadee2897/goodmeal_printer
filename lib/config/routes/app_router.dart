@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:goodmeal_printer/apps/app_exports.dart';
+import 'package:goodmeal_printer/screens/goodmeal_check_balance/controllers/providers/check_balance.dart';
+import 'package:goodmeal_printer/screens/goodmeal_check_balance/views/check_balance_screen.dart';
 import 'package:goodmeal_printer/screens/goodmeal_full_tax_invoice/controllers/providers/print_full_tax_invoice.dart';
 import 'package:goodmeal_printer/screens/goodmeal_full_tax_invoice/views/report_full_tax_invoice_screen.dart';
 import 'package:goodmeal_printer/screens/goodmeal_report_hq_vat_postt_sale/controllers/providers/get_company_data.dart';
@@ -10,8 +12,8 @@ import 'package:goodmeal_printer/screens/goodmeal_report_hq_vat_postt_sale/contr
 import 'package:goodmeal_printer/screens/goodmeal_report_hq_vat_postt_sale/views/report_hq_vat_postt_sale_screen.dart';
 import 'package:goodmeal_printer/screens/goodmeal_simplified_tax_invoice/controllers/providers/print_simplified_tax_invoice.dart';
 import 'package:goodmeal_printer/screens/goodmeal_simplified_tax_invoice/views/report_simplified_tax_invoice_screen.dart';
-import 'package:goodmeal_printer/screens/report_sale_by_group_savetime/controllers/providers/report_sale_by_group_savetime.dart';
-import 'package:goodmeal_printer/screens/report_sale_by_group_savetime/views/report_simplified_tax_invoice_screen.dart';
+import 'package:goodmeal_printer/screens/goodmeal_report_sale_by_group_savetime/controllers/providers/report_sale_by_group_savetime.dart';
+import 'package:goodmeal_printer/screens/goodmeal_report_sale_by_group_savetime/views/report_simplified_tax_invoice_screen.dart';
 import 'route_config.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -206,6 +208,30 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         },
         pageBuilder: (context, state) {
           return const NoTransitionPage(child: ReportSaleByGroupSavetimeScreen());
+        },
+      ),
+      GoRoute(
+        path: Routes.checkBalanceScreen,
+        redirect: (context, state) {
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            try {
+              var bodyBase64 = state.uri.queryParameters['Ym9keQ'];
+              var bodyDecode = idFormBase64(id: bodyBase64);
+              // print(bodyDecode);
+              Map<String, dynamic> bodyJson = jsonDecode(bodyDecode);
+              await ref.read(checkBalanceProvider.notifier).add(body: bodyJson);
+            } catch (e, stx) {
+              if (kDebugMode) print('error: $e');
+              if (kDebugMode) print('stackTrace: $stx');
+              ref.read(routerHelperProvider).goPath('/error');
+              if (kDebugMode) print('error: $e');
+              return;
+            }
+          });
+          return;
+        },
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(child: CheckBalanceScreen());
         },
       ),
     ],
