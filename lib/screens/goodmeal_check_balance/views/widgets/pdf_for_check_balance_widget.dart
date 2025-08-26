@@ -58,7 +58,7 @@ class PDFGeneratorCheckBalance {
                     pw.SizedBox(height: 20),
                     pw.Row(
                       children: [
-                        pw.Expanded(flex: 2, child: pw.Text('เป็นสามชิกเมื่อ', style: textStyleNormal)),
+                        pw.Expanded(flex: 2, child: pw.Text('เป็นสมาชิกเมื่อ', style: textStyleNormal)),
                         pw.Expanded(flex: 1, child: pw.Text(DateTime.parse(dataBalance.startDate!).formatThaiDate(), style: textStyleNormal)),
                       ],
                     ),
