@@ -13,4 +13,6 @@ class Routes {
   static const String reportSaleByGroupSavetimeScreen = '/report_sale_by_group_savetime';
   //CheckBalance
   static const String checkBalanceScreen = '/check_balance';
+  //OrderHistory
+  static const String orderHistoryScreen = '/order_history';
 }
