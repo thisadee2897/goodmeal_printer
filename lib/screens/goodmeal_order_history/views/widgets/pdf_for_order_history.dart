@@ -1,16 +1,16 @@
 import 'package:goodmeal_printer/apps/app_exports.dart';
-import 'package:goodmeal_printer/models/simplified_tax_invoice_model.dart';
+import 'package:goodmeal_printer/models/order_history_model.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-class PDFGeneratorSimplifiedTaxInvoice {
+class PDFGeneratorOrderHistory {
   Future<pw.Page> generate({
-    required SimplifiedTaxInvoiceModel dt,
+    required OrderHistoryModel dt,
     bool showFooter = true,
     bool showDiscounts = false,
-    bool showPaymentMethods = false,
+    bool showPaymentMethods = true,
     bool showCategories = false,
-    bool showPoints = false,
+    bool showPoints = true,
   }) async {
     Uint8List? imageBytesFormNetwork = await getImageBytes(
       dt.header!.companyLogoImageNetwork,
@@ -95,7 +95,7 @@ class PDFGeneratorSimplifiedTaxInvoice {
                               //   style: textStyleNormal,
                               // ),
                               pw.Container(
-                                width: 380, // กำหนดความกว้างสูงสุดของที่อยู่
+                                width: 420, // กำหนดความกว้างสูงสุดของที่อยู่
                                 child: pw.Text(
                                   dt.header?.companyAddress ?? '',
                                   style: textStyleNormal,
@@ -424,89 +424,233 @@ class PDFGeneratorSimplifiedTaxInvoice {
                         // Data Rows
                         ...List.generate(dt.details!.length, (index) {
                           var item = dt.details![index];
+                          // return pw.TableRow(
+                          //   children: [
+                          //     pw.SizedBox(
+                          //       height: 20,
+                          //       child: pw.Align(
+                          //         alignment: pw.Alignment.center,
+                          //         child: pw.Padding(
+                          //           padding: const pw.EdgeInsets.only(
+                          //             left: 2,
+                          //             right: 2,
+                          //           ),
+                          //           child: pw.Text(
+                          //             // item.listNo.toString(),
+                          //             (item.listNo != 0 &&
+                          //                     item.orderdtType != 5)
+                          //                 ? item.listNo.toString()
+                          //                 : ' ', // ถ้า 0 หรือ 5 ให้เป็นช่องว่าง
+                          //             textAlign: pw.TextAlign.center,
+                          //             style: textStyleNormal,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     pw.SizedBox(
+                          //       height: 20,
+                          //       child: pw.Align(
+                          //         alignment: pw.Alignment.centerLeft,
+                          //         child: pw.Padding(
+                          //           padding: const pw.EdgeInsets.only(
+                          //             left: 2,
+                          //             right: 2,
+                          //           ),
+                          //           // child: pw.Text(
+                          //           //   '${item.itemName ?? ''} ${item.saveName ?? ''} ${item.saveTime ?? ''}',
+                          //           //   style: textStyleNormal,
+                          //           // ),
+                          //           child: pw.RichText(
+                          //             text: pw.TextSpan(
+                          //               children: [
+                          //                 pw.TextSpan(
+                          //                   text: item.itemName ?? '',
+                          //                   style: textStyleNormal,
+                          //                 ),
+                          //                 if (item.saveName != null &&
+                          //                     item.saveName != '')
+                          //                   pw.TextSpan(
+                          //                     text: ' บันทึกโดย ',
+                          //                     style: textStyleNormal.copyWith(
+                          //                       color: PdfColors.blue,
+                          //                     ), // เปลี่ยนสี
+                          //                   ), // เว้นช่องว่าง
+                          //                 pw.TextSpan(
+                          //                   text: item.saveName ?? '',
+                          //                   style: textStyleNormal.copyWith(
+                          //                     color: PdfColors.blue,
+                          //                   ), // เปลี่ยนสี
+                          //                 ),
+                          //                 pw.TextSpan(text: ' '),
+                          //                 pw.TextSpan(
+                          //                   text: item.saveTime ?? '',
+                          //                   style: textStyleNormal.copyWith(
+                          //                     color: PdfColors.blue,
+                          //                   ), // เปลี่ยนสี
+                          //                 ),
+                          //                 // can add more TextSpan here if needed
+                          //                 if (item.cancelName != null &&
+                          //                     item.cancelName != '')
+                          //                   pw.TextSpan(
+                          //                     text: ' ยกเลิก ',
+                          //                     style: textStyleNormal.copyWith(
+                          //                       color: PdfColors.red,
+                          //                     ), // เปลี่ยนสี
+                          //                   ), // เว้นช่องว่าง
+                          //                 pw.TextSpan(
+                          //                   text: item.cancelName ?? '',
+                          //                   style: textStyleNormal.copyWith(
+                          //                     color: PdfColors.red,
+                          //                   ), // เปลี่ยนสี
+                          //                 ),
+                          //                 pw.TextSpan(text: ' '),
+                          //                 pw.TextSpan(
+                          //                   text: item.cancelTime ?? '',
+                          //                   style: textStyleNormal.copyWith(
+                          //                     color: PdfColors.red,
+                          //                   ), // เปลี่ยนสี
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     pw.SizedBox(
+                          //       height: 20,
+                          //       child: pw.Align(
+                          //         alignment: pw.Alignment.centerRight,
+                          //         child: pw.Padding(
+                          //           padding: const pw.EdgeInsets.only(
+                          //             left: 2,
+                          //             right: 2,
+                          //           ),
+                          //           child: pw.Text(
+                          //             item.unitPrice.digits(2),
+                          //             textAlign: pw.TextAlign.end,
+                          //             style: textStyleNormal,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     pw.SizedBox(
+                          //       height: 20,
+                          //       child: pw.Align(
+                          //         alignment: pw.Alignment.centerRight,
+                          //         child: pw.Padding(
+                          //           padding: const pw.EdgeInsets.only(
+                          //             left: 2,
+                          //             right: 2,
+                          //           ),
+                          //           child: pw.Text(
+                          //             item.quantity.digits(2),
+                          //             textAlign: pw.TextAlign.end,
+                          //             style: textStyleNormal,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     pw.SizedBox(
+                          //       height: 20,
+                          //       child: pw.Align(
+                          //         alignment: pw.Alignment.centerRight,
+                          //         child: pw.Padding(
+                          //           padding: const pw.EdgeInsets.only(
+                          //             left: 2,
+                          //             right: 2,
+                          //           ),
+                          //           child: pw.Text(
+                          //             item.amount.digits(2),
+                          //             textAlign: pw.TextAlign.end,
+                          //             style: textStyleNormal,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // );
                           return pw.TableRow(
                             children: [
-                              pw.SizedBox(
-                                height: 20,
-                                child: pw.Align(
-                                  alignment: pw.Alignment.center,
-                                  child: pw.Padding(
-                                    padding: const pw.EdgeInsets.only(
-                                      left: 2,
-                                      right: 2,
-                                    ),
-                                    child: pw.Text(
-                                      item.listNo.toString(),
-                                      textAlign: pw.TextAlign.center,
-                                      style: textStyleNormal,
-                                    ),
-                                  ),
+                              // Column 1: listNo
+                              pw.Padding(
+                                padding: const pw.EdgeInsets.all(4),
+                                child: pw.Text(
+                                  (item.listNo != 0 && item.orderdtType != 5)
+                                      ? item.listNo.toString()
+                                      : ' ',
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                height: 20,
-                                child: pw.Align(
-                                  alignment: pw.Alignment.centerLeft,
-                                  child: pw.Padding(
-                                    padding: const pw.EdgeInsets.only(
-                                      left: 2,
-                                      right: 2,
-                                    ),
-                                    child: pw.Text(
+
+                              // Column 2: itemName (บวก Remark ถ้ามี)
+                              pw.Padding(
+                                padding: const pw.EdgeInsets.all(4),
+                                child: pw.Column(
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
+                                  children: [
+                                    pw.Text(
                                       item.itemName ?? '',
                                       style: textStyleNormal,
                                     ),
+
+                                    // ✅ remark แสดงเมื่อมีค่า
+                                    if (item.saveName != null &&
+                                        item.saveName!.isNotEmpty)
+                                      pw.Text(
+                                        '${item.saveName != null ? " บันทึกโดย ${item.saveName} " : ""}${item.saveTime != null ? " ${item.saveTime}" : ""}',
+                                        style: textStyleNormal.copyWith(
+                                          fontSize: 9,
+                                          color:
+                                              PdfColors
+                                                  .blue, // ทำ save เป็นสีน้ำเงินให้เห็นชัด
+                                        ),
+                                      ),
+                                    if (item.cancelName != null &&
+                                        item.cancelName!.isNotEmpty)
+                                      pw.Text(
+                                        // '${item.cancelName != null ? " ยกเลิกโดย ${item.cancelName}" : " "}${item.cancelRemark != null && item.cancelRemark != " " ? " (${item.cancelRemark})" : ""}${item.cancelTime != null ? " ${item.cancelTime}" : ""}',
+                                        'ยกเลิก ( ${item.cancelRemark ?? ""} ) โดย ${item.cancelName} ${item.cancelTime}',
+                                        style: textStyleNormal.copyWith(
+                                          fontSize: 9,
+                                          color:
+                                              PdfColors
+                                                  .red, // ทำ remark เป็นสีแดงให้เห็นชัด
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                              // Column 3: unitPrice
+                              pw.Padding(
+                                padding: const pw.EdgeInsets.all(4),
+                                child: pw.Align(
+                                  alignment: pw.Alignment.centerRight,
+                                  child: pw.Text(
+                                    item.unitPrice.digits(2),
+                                    style: textStyleNormal,
                                   ),
                                 ),
                               ),
-                              pw.SizedBox(
-                                height: 20,
+                              // Column 4: qty
+                              pw.Padding(
+                                padding: const pw.EdgeInsets.all(4),
                                 child: pw.Align(
                                   alignment: pw.Alignment.centerRight,
-                                  child: pw.Padding(
-                                    padding: const pw.EdgeInsets.only(
-                                      left: 2,
-                                      right: 2,
-                                    ),
-                                    child: pw.Text(
-                                      item.unitPrice.digits(2),
-                                      textAlign: pw.TextAlign.end,
-                                      style: textStyleNormal,
-                                    ),
+                                  child: pw.Text(
+                                    item.quantity.toString(),
+                                    style: textStyleNormal,
                                   ),
                                 ),
                               ),
-                              pw.SizedBox(
-                                height: 20,
+                              // Column 5: amount
+                              pw.Padding(
+                                padding: const pw.EdgeInsets.all(4),
                                 child: pw.Align(
                                   alignment: pw.Alignment.centerRight,
-                                  child: pw.Padding(
-                                    padding: const pw.EdgeInsets.only(
-                                      left: 2,
-                                      right: 2,
-                                    ),
-                                    child: pw.Text(
-                                      item.quantity.digits(2),
-                                      textAlign: pw.TextAlign.end,
-                                      style: textStyleNormal,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              pw.SizedBox(
-                                height: 20,
-                                child: pw.Align(
-                                  alignment: pw.Alignment.centerRight,
-                                  child: pw.Padding(
-                                    padding: const pw.EdgeInsets.only(
-                                      left: 2,
-                                      right: 2,
-                                    ),
-                                    child: pw.Text(
-                                      item.amount.digits(2),
-                                      textAlign: pw.TextAlign.end,
-                                      style: textStyleNormal,
-                                    ),
+                                  child: pw.Text(
+                                    item.amount.digits(2),
+                                    style: textStyleNormal,
                                   ),
                                 ),
                               ),

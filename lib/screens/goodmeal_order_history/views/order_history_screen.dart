@@ -10,7 +10,7 @@ class OrderHistoryScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Uint8List? filePdf = ref.watch(filePdfSimplifiedTaxInvoiceViewProvider);
+    Uint8List? filePdf = ref.watch(filePdfOrderHistoryViewProvider);
     final hd = ref.watch(orderHistoriesProvider);
     return Scaffold(
       backgroundColor: Colors.black87,
@@ -18,15 +18,15 @@ class OrderHistoryScreen extends ConsumerWidget {
         backgroundColor: Colors.black87,
         title: const Text(
           'Order History',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          style: TextStyle(color: Colors.white),
         ),
         actions: [
           FilledButton.icon(
             onPressed: () async {
-              var pdfFile = ref.read(filePdfSimplifiedTaxInvoiceProvider);
-              await Printing.layoutPdf(onLayout: (format) async => pdfFile.save());
+              var pdfFile = ref.read(filePdfOrderHistoryProvider);
+              await Printing.layoutPdf(
+                onLayout: (format) async => pdfFile.save(),
+              );
             },
             label: const Text('Print'),
             icon: const Icon(Icons.print),
@@ -41,18 +41,23 @@ class OrderHistoryScreen extends ConsumerWidget {
           return filePdf == null
               ? Container()
               : SfPdfViewerTheme(
-                  data: const SfPdfViewerThemeData(backgroundColor: Colors.black87),
-                  child: Center(
-                    child: SizedBox(
-                      width: context.screenWidth > context.screenHeight ? context.screenHeight  : context.screenWidth,
-                      child: SfPdfViewer.memory(
-                        filePdf,
-                        canShowPaginationDialog: false,
-                        pageSpacing: 10,
-                      ),
+                data: const SfPdfViewerThemeData(
+                  backgroundColor: Colors.black87,
+                ),
+                child: Center(
+                  child: SizedBox(
+                    width:
+                        context.screenWidth > context.screenHeight
+                            ? context.screenHeight
+                            : context.screenWidth,
+                    child: SfPdfViewer.memory(
+                      filePdf,
+                      canShowPaginationDialog: false,
+                      pageSpacing: 10,
                     ),
                   ),
-                );
+                ),
+              );
         },
       ),
     );
