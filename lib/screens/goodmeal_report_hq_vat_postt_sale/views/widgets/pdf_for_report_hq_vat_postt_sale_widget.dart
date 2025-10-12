@@ -14,7 +14,9 @@ class PDFGeneratorReportHQVatPosttSale {
     // Uint8List? imageBytesFormNetwork = await getImageBytes(company.companyLogo);
     final ByteData data = await rootBundle.load('assets/fonts/THSarabun.ttf');
     final font = pw.Font.ttf(data.buffer.asByteData());
-    final ByteData dataBold = await rootBundle.load('assets/fonts/THSarabun-Bold.ttf');
+    final ByteData dataBold = await rootBundle.load(
+      'assets/fonts/THSarabun-Bold.ttf',
+    );
     final fontBold = pw.Font.ttf(dataBold.buffer.asByteData());
     var textStyleNormal = pw.TextStyle(
       fontSize: 14,
@@ -28,6 +30,13 @@ class PDFGeneratorReportHQVatPosttSale {
       color: PdfColors.black,
       font: fontBold,
     );
+    final branchs = dt.first.branchs!;
+    final List<List<dynamic>> chunked = [];
+    for (var i = 0; i < branchs.length; i += 4) {
+      chunked.add(
+        branchs.sublist(i, i + 4 > branchs.length ? branchs.length : i + 4),
+      );
+    }
     return pw.Page(
       pageFormat: PdfPageFormat.a4.landscape,
       margin: const pw.EdgeInsets.only(left: 2, right: 2, top: 10, bottom: 2),
@@ -77,22 +86,40 @@ class PDFGeneratorReportHQVatPosttSale {
                               pw.SizedBox(
                                 width: double.infinity,
                                 child: pw.Row(
-                                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
                                   mainAxisAlignment: pw.MainAxisAlignment.start,
                                   children: [
-                                    pw.Text('ชื่อผู้ประกอบการ : ', style: textStyleNormal),
-                                    pw.Text(hd.companyName ?? '-', style: textStyleBold),
+                                    pw.Text(
+                                      'ชื่อผู้ประกอบการ : ',
+                                      style: textStyleNormal,
+                                    ),
+                                    pw.Text(
+                                      // hd.companyName ?? '-',
+                                      (dt.first.branchName == null ||
+                                              dt.first.branchName!.isEmpty)
+                                          ? (hd.companyName ?? '-')
+                                          : dt.first.branchName!,
+                                      style: textStyleBold,
+                                    ),
                                   ],
                                 ),
                               ),
                               pw.SizedBox(
                                 width: double.infinity,
                                 child: pw.Row(
-                                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
                                   mainAxisAlignment: pw.MainAxisAlignment.start,
                                   children: [
-                                    pw.Text('ชื่อสถานประกอบการ : ', style: textStyleNormal),
-                                    pw.Text(dt.first.companyAddress ?? '-', style: textStyleBold),
+                                    pw.Text(
+                                      'ชื่อสถานประกอบการ : ',
+                                      style: textStyleNormal,
+                                    ),
+                                    pw.Text(
+                                      dt.first.companyAddress ?? '-',
+                                      style: textStyleBold,
+                                    ),
                                   ],
                                 ),
                               ),
@@ -103,20 +130,28 @@ class PDFGeneratorReportHQVatPosttSale {
                       pw.Expanded(
                         flex: 1,
                         child: pw.Padding(
-                          padding: const pw.EdgeInsets.only(left: 8.0, right: 8.0),
+                          padding: const pw.EdgeInsets.only(
+                            left: 8.0,
+                            right: 8.0,
+                          ),
                           child: pw.Column(
                             mainAxisSize: pw.MainAxisSize.max,
                             crossAxisAlignment: pw.CrossAxisAlignment.start,
-                            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment:
+                                pw.MainAxisAlignment.spaceBetween,
                             children: [
                               pw.SizedBox(
                                 width: double.infinity,
                                 child: pw.Row(
                                   mainAxisAlignment: pw.MainAxisAlignment.end,
-                                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
                                   children: [
-                                    pw.Text('เลขประจำตัวผู้เสียภาษีอากร : ', style: textStyleNormal),
-                                    // 0105566144399 ใส่กรอบ 4 เหลี่ยม 
+                                    pw.Text(
+                                      'เลขประจำตัวผู้เสียภาษีอากร : ',
+                                      style: textStyleNormal,
+                                    ),
+                                    // 0105566144399 ใส่กรอบ 4 เหลี่ยม
                                     pw.Container(
                                       padding: const pw.EdgeInsets.all(2),
                                       // decoration: pw.BoxDecoration(
@@ -131,31 +166,89 @@ class PDFGeneratorReportHQVatPosttSale {
                                   ],
                                 ),
                               ),
+                              // pw.SizedBox(
+                              //   width: double.infinity,
+                              //   // Generate Branchs Name
+                              //   child: pw.Row(
+                              //     mainAxisAlignment: pw.MainAxisAlignment.end,
+                              //     mainAxisSize: pw.MainAxisSize.max,
+                              //     children: List.generate(
+                              //       // hd.branchsName!.length,
+                              //       dt.first.branchs!.length,
+                              //       (index) {
+                              //         var item = dt.first.branchs![index];
+                              //         return pw.Padding(
+                              //           padding: const pw.EdgeInsets.only(
+                              //             left: 12.0,
+                              //           ),
+                              //           child: pw.Row(
+                              //             children: [
+                              //               pw.SvgImage(
+                              //                 svg:
+                              //                     item.isSelected!
+                              //                         ? svgTrue
+                              //                         : svgFasle,
+                              //               ),
+                              //               pw.SizedBox(width: 5),
+                              //               pw.Text(
+                              //                 "สาขา ${item.branchNumber}",
+                              //                 style: textStyleBold,
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         );
+                              //       },
+                              //     ),
+                              //   ),
+                              // ),
+                              // final branchs = dt.first.branchs!;
+                              // final List<List<dynamic>> chunked = [];
+                              // for (var i = 0; i < branchs.length; i += 4) {
+                              //   chunked.add(
+                              //     branchs.sublist(
+                              //       i,
+                              //       i + 4 > branchs.length ? branchs.length : i + 4,
+                              //     ),
+                              //   );
+                              // }
+
+                              // ใช้ chunked แทน child ของ pw.SizedBox
                               pw.SizedBox(
                                 width: double.infinity,
-                                // Generate Branchs Name
-                                child: pw.Row(
-                                  mainAxisAlignment: pw.MainAxisAlignment.end,
-                                  mainAxisSize: pw.MainAxisSize.max,
-                                  children: List.generate(
-                                    hd.branchsName!.length,
-                                    (index) {
-                                      var item = dt.first.branchs![index];
-                                      return pw.Padding(
-                                        padding: const pw.EdgeInsets.only(left: 12.0),
-                                        child: pw.Row(
-                                          children: [
-                                            pw.SvgImage(svg: item.isSelected! ? svgTrue : svgFasle),
-                                            pw.SizedBox(width: 5),
-                                            pw.Text(
-                                              "สาขา ${item.branchNumber}",
-                                              style: textStyleBold,
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  ),
+                                child: pw.Column(
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.end, // ชิดขวา
+                                  children:
+                                      chunked.map((row) {
+                                        return pw.Row(
+                                          mainAxisAlignment:
+                                              pw.MainAxisAlignment.end,
+                                          children:
+                                              row.map((item) {
+                                                return pw.Padding(
+                                                  padding:
+                                                      const pw.EdgeInsets.only(
+                                                        left: 12.0,
+                                                      ),
+                                                  child: pw.Row(
+                                                    children: [
+                                                      pw.SvgImage(
+                                                        svg:
+                                                            item.isSelected!
+                                                                ? svgTrue
+                                                                : svgFasle,
+                                                      ),
+                                                      pw.SizedBox(width: 5),
+                                                      pw.Text(
+                                                        "สาขา ${item.branchNumber}",
+                                                        style: textStyleBold,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }).toList(),
+                                        );
+                                      }).toList(),
                                 ),
                               ),
                             ],
@@ -186,13 +279,15 @@ class PDFGeneratorReportHQVatPosttSale {
                     },
                     children: [
                       // Header Row
-
                       pw.TableRow(
                         children: [
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'ลำดับ',
@@ -205,7 +300,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'วัน/เดือน/ปี\nใบกำกับภาษี',
@@ -218,7 +316,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'เลขที่\nใบกำกับภาษี',
@@ -231,7 +332,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'ชื่อผู้ซื้อสินค้า/ผู้รับบริการ',
@@ -244,7 +348,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   maxLines: 2,
@@ -258,7 +365,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'สถานประกอบการ',
@@ -271,7 +381,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'ช่องทางการชำระเงิน',
@@ -284,7 +397,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'มูลค่าสินค้า\nหรือบริการ',
@@ -297,7 +413,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'จำนวน\nเงินภาษี',
@@ -310,7 +429,10 @@ class PDFGeneratorReportHQVatPosttSale {
                           pw.SizedBox(
                             height: 40,
                             child: pw.Padding(
-                              padding: const pw.EdgeInsets.only(left: 2, right: 2),
+                              padding: const pw.EdgeInsets.only(
+                                left: 2,
+                                right: 2,
+                              ),
                               child: pw.Center(
                                 child: pw.Text(
                                   'จำนวนเงินรวม\nภาษีมูลค่าเพิ่ม',
@@ -323,129 +445,163 @@ class PDFGeneratorReportHQVatPosttSale {
                         ],
                       ),
                       // Data Rows
-                      ...List.generate(
-                        dt.length,
-                        (index) {
-                          final item = dt[index];
-                          return pw.TableRow(
-                            children: [
-                              pw.SizedBox(
-                                height: 20,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    num.parse((item.listno).toString()).digits(0),
-                                    textAlign: pw.TextAlign.center,
-                                    style: textStyleNormal,
-                                  ),
+                      ...List.generate(dt.length, (index) {
+                        final item = dt[index];
+                        return pw.TableRow(
+                          children: [
+                            pw.SizedBox(
+                              height: 20,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  num.parse((item.listno).toString()).digits(0),
+                                  textAlign: pw.TextAlign.center,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 60,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    (item.vatPosttSaleDocudate).dateTHFormApi,
-                                    textAlign: pw.TextAlign.start,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 60,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  (item.vatPosttSaleDocudate).dateTHFormApi,
+                                  textAlign: pw.TextAlign.start,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 130,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    maxLines: 1,
-                                    overflow: pw.TextOverflow.visible,
-                                    "${item.vatPosttSaleDocuno}",
-                                    textAlign: pw.TextAlign.start,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 130,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  maxLines: 1,
+                                  overflow: pw.TextOverflow.visible,
+                                  "${item.vatPosttSaleDocuno}",
+                                  textAlign: pw.TextAlign.start,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.Expanded(
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    item.vatPosttSaleArcustomerName ?? '-',
-                                    textAlign: pw.TextAlign.start,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.Expanded(
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  item.vatPosttSaleArcustomerName ?? '-',
+                                  textAlign: pw.TextAlign.start,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 100,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    item.vatPosttSaleArcustomerTaxid ?? '-',
-                                    textAlign: pw.TextAlign.start,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 100,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  item.vatPosttSaleArcustomerTaxid ?? '-',
+                                  textAlign: pw.TextAlign.start,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 80,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    item.vatPosttSaleArcustomerBranchNumber ?? '-',
-                                    textAlign: pw.TextAlign.start,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 80,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  item.vatPosttSaleArcustomerBranchNumber ??
+                                      '-',
+                                  textAlign: pw.TextAlign.start,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 80,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    item.salehdPaymenttype ?? '-',
-                                    textAlign: pw.TextAlign.start,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 80,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  item.salehdPaymenttype ?? '-',
+                                  textAlign: pw.TextAlign.start,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 60,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    num.parse(item.vatPosttSaleBaseamnt.toString()).digits(2),
-                                    textAlign: pw.TextAlign.end,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 60,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  num.parse(
+                                    item.vatPosttSaleBaseamnt.toString(),
+                                  ).digits(2),
+                                  textAlign: pw.TextAlign.end,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 60,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    num.parse(item.vatPosttSaleVatamnt.toString()).digits(2),
-                                    textAlign: pw.TextAlign.end,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 60,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  num.parse(
+                                    item.vatPosttSaleVatamnt.toString(),
+                                  ).digits(2),
+                                  textAlign: pw.TextAlign.end,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                              pw.SizedBox(
-                                width: 60,
-                                child: pw.Padding(
-                                  padding: const pw.EdgeInsets.only(left: 2, right: 2),
-                                  child: pw.Text(
-                                    num.parse(item.vatPosttSaleSumamnt.toString()).digits(2),
-                                    textAlign: pw.TextAlign.end,
-                                    style: textStyleNormal,
-                                  ),
+                            ),
+                            pw.SizedBox(
+                              width: 60,
+                              child: pw.Padding(
+                                padding: const pw.EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: pw.Text(
+                                  num.parse(
+                                    item.vatPosttSaleSumamnt.toString(),
+                                  ).digits(2),
+                                  textAlign: pw.TextAlign.end,
+                                  style: textStyleNormal,
                                 ),
                               ),
-                            ],
-                          );
-                        },
-                      )
+                            ),
+                          ],
+                        );
+                      }),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

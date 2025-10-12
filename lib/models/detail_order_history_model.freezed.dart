@@ -43,6 +43,32 @@ mixin _$DetailOrderHistoryModel {
   String? get cancelRemark => throw _privateConstructorUsedError;
   @JsonKey(name: 'orderdt_type')
   num? get orderdtType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'orderdt_status')
+  num? get orderdtStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cancel_qty')
+  num? get cancelQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'from_table')
+  String? get fromTableName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_from')
+  String? get moveFromName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_from_time')
+  String? get moveFromTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_remart')
+  String? get moveRemark => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_src')
+  String? get orderSrc => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_table')
+  String? get moveTableName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_name')
+  String? get moveName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_time')
+  String? get moveTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'out_remark')
+  String? get outRemark => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_qty')
+  num? get moveQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_desc')
+  String? get orderDesc => throw _privateConstructorUsedError;
 
   /// Serializes this DetailOrderHistoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -71,7 +97,20 @@ abstract class $DetailOrderHistoryModelCopyWith<$Res> {
       @JsonKey(name: 'cancel_time') String? cancelTime,
       @JsonKey(name: 'cancelname') String? cancelName,
       @JsonKey(name: 'cancel_remark') String? cancelRemark,
-      @JsonKey(name: 'orderdt_type') num? orderdtType});
+      @JsonKey(name: 'orderdt_type') num? orderdtType,
+      @JsonKey(name: 'orderdt_status') num? orderdtStatus,
+      @JsonKey(name: 'cancel_qty') num? cancelQty,
+      @JsonKey(name: 'from_table') String? fromTableName,
+      @JsonKey(name: 'move_from') String? moveFromName,
+      @JsonKey(name: 'move_from_time') String? moveFromTime,
+      @JsonKey(name: 'move_remart') String? moveRemark,
+      @JsonKey(name: 'order_src') String? orderSrc,
+      @JsonKey(name: 'move_table') String? moveTableName,
+      @JsonKey(name: 'move_name') String? moveName,
+      @JsonKey(name: 'move_time') String? moveTime,
+      @JsonKey(name: 'out_remark') String? outRemark,
+      @JsonKey(name: 'move_qty') num? moveQty,
+      @JsonKey(name: 'order_desc') String? orderDesc});
 }
 
 /// @nodoc
@@ -101,6 +140,19 @@ class _$DetailOrderHistoryModelCopyWithImpl<$Res,
     Object? cancelName = freezed,
     Object? cancelRemark = freezed,
     Object? orderdtType = freezed,
+    Object? orderdtStatus = freezed,
+    Object? cancelQty = freezed,
+    Object? fromTableName = freezed,
+    Object? moveFromName = freezed,
+    Object? moveFromTime = freezed,
+    Object? moveRemark = freezed,
+    Object? orderSrc = freezed,
+    Object? moveTableName = freezed,
+    Object? moveName = freezed,
+    Object? moveTime = freezed,
+    Object? outRemark = freezed,
+    Object? moveQty = freezed,
+    Object? orderDesc = freezed,
   }) {
     return _then(_value.copyWith(
       listNo: freezed == listNo
@@ -147,6 +199,58 @@ class _$DetailOrderHistoryModelCopyWithImpl<$Res,
           ? _value.orderdtType
           : orderdtType // ignore: cast_nullable_to_non_nullable
               as num?,
+      orderdtStatus: freezed == orderdtStatus
+          ? _value.orderdtStatus
+          : orderdtStatus // ignore: cast_nullable_to_non_nullable
+              as num?,
+      cancelQty: freezed == cancelQty
+          ? _value.cancelQty
+          : cancelQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      fromTableName: freezed == fromTableName
+          ? _value.fromTableName
+          : fromTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromName: freezed == moveFromName
+          ? _value.moveFromName
+          : moveFromName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromTime: freezed == moveFromTime
+          ? _value.moveFromTime
+          : moveFromTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveRemark: freezed == moveRemark
+          ? _value.moveRemark
+          : moveRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderSrc: freezed == orderSrc
+          ? _value.orderSrc
+          : orderSrc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTableName: freezed == moveTableName
+          ? _value.moveTableName
+          : moveTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveName: freezed == moveName
+          ? _value.moveName
+          : moveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTime: freezed == moveTime
+          ? _value.moveTime
+          : moveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      outRemark: freezed == outRemark
+          ? _value.outRemark
+          : outRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveQty: freezed == moveQty
+          ? _value.moveQty
+          : moveQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      orderDesc: freezed == orderDesc
+          ? _value.orderDesc
+          : orderDesc // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -171,7 +275,20 @@ abstract class _$$DetailOrderHistoryModelImplCopyWith<$Res>
       @JsonKey(name: 'cancel_time') String? cancelTime,
       @JsonKey(name: 'cancelname') String? cancelName,
       @JsonKey(name: 'cancel_remark') String? cancelRemark,
-      @JsonKey(name: 'orderdt_type') num? orderdtType});
+      @JsonKey(name: 'orderdt_type') num? orderdtType,
+      @JsonKey(name: 'orderdt_status') num? orderdtStatus,
+      @JsonKey(name: 'cancel_qty') num? cancelQty,
+      @JsonKey(name: 'from_table') String? fromTableName,
+      @JsonKey(name: 'move_from') String? moveFromName,
+      @JsonKey(name: 'move_from_time') String? moveFromTime,
+      @JsonKey(name: 'move_remart') String? moveRemark,
+      @JsonKey(name: 'order_src') String? orderSrc,
+      @JsonKey(name: 'move_table') String? moveTableName,
+      @JsonKey(name: 'move_name') String? moveName,
+      @JsonKey(name: 'move_time') String? moveTime,
+      @JsonKey(name: 'out_remark') String? outRemark,
+      @JsonKey(name: 'move_qty') num? moveQty,
+      @JsonKey(name: 'order_desc') String? orderDesc});
 }
 
 /// @nodoc
@@ -200,6 +317,19 @@ class __$$DetailOrderHistoryModelImplCopyWithImpl<$Res>
     Object? cancelName = freezed,
     Object? cancelRemark = freezed,
     Object? orderdtType = freezed,
+    Object? orderdtStatus = freezed,
+    Object? cancelQty = freezed,
+    Object? fromTableName = freezed,
+    Object? moveFromName = freezed,
+    Object? moveFromTime = freezed,
+    Object? moveRemark = freezed,
+    Object? orderSrc = freezed,
+    Object? moveTableName = freezed,
+    Object? moveName = freezed,
+    Object? moveTime = freezed,
+    Object? outRemark = freezed,
+    Object? moveQty = freezed,
+    Object? orderDesc = freezed,
   }) {
     return _then(_$DetailOrderHistoryModelImpl(
       listNo: freezed == listNo
@@ -246,6 +376,58 @@ class __$$DetailOrderHistoryModelImplCopyWithImpl<$Res>
           ? _value.orderdtType
           : orderdtType // ignore: cast_nullable_to_non_nullable
               as num?,
+      orderdtStatus: freezed == orderdtStatus
+          ? _value.orderdtStatus
+          : orderdtStatus // ignore: cast_nullable_to_non_nullable
+              as num?,
+      cancelQty: freezed == cancelQty
+          ? _value.cancelQty
+          : cancelQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      fromTableName: freezed == fromTableName
+          ? _value.fromTableName
+          : fromTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromName: freezed == moveFromName
+          ? _value.moveFromName
+          : moveFromName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromTime: freezed == moveFromTime
+          ? _value.moveFromTime
+          : moveFromTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveRemark: freezed == moveRemark
+          ? _value.moveRemark
+          : moveRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderSrc: freezed == orderSrc
+          ? _value.orderSrc
+          : orderSrc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTableName: freezed == moveTableName
+          ? _value.moveTableName
+          : moveTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveName: freezed == moveName
+          ? _value.moveName
+          : moveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTime: freezed == moveTime
+          ? _value.moveTime
+          : moveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      outRemark: freezed == outRemark
+          ? _value.outRemark
+          : outRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveQty: freezed == moveQty
+          ? _value.moveQty
+          : moveQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      orderDesc: freezed == orderDesc
+          ? _value.orderDesc
+          : orderDesc // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -264,7 +446,20 @@ class _$DetailOrderHistoryModelImpl implements _DetailOrderHistoryModel {
       @JsonKey(name: 'cancel_time') this.cancelTime,
       @JsonKey(name: 'cancelname') this.cancelName,
       @JsonKey(name: 'cancel_remark') this.cancelRemark,
-      @JsonKey(name: 'orderdt_type') this.orderdtType});
+      @JsonKey(name: 'orderdt_type') this.orderdtType,
+      @JsonKey(name: 'orderdt_status') this.orderdtStatus,
+      @JsonKey(name: 'cancel_qty') this.cancelQty,
+      @JsonKey(name: 'from_table') this.fromTableName,
+      @JsonKey(name: 'move_from') this.moveFromName,
+      @JsonKey(name: 'move_from_time') this.moveFromTime,
+      @JsonKey(name: 'move_remart') this.moveRemark,
+      @JsonKey(name: 'order_src') this.orderSrc,
+      @JsonKey(name: 'move_table') this.moveTableName,
+      @JsonKey(name: 'move_name') this.moveName,
+      @JsonKey(name: 'move_time') this.moveTime,
+      @JsonKey(name: 'out_remark') this.outRemark,
+      @JsonKey(name: 'move_qty') this.moveQty,
+      @JsonKey(name: 'order_desc') this.orderDesc});
 
   factory _$DetailOrderHistoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DetailOrderHistoryModelImplFromJson(json);
@@ -302,10 +497,49 @@ class _$DetailOrderHistoryModelImpl implements _DetailOrderHistoryModel {
   @override
   @JsonKey(name: 'orderdt_type')
   final num? orderdtType;
+  @override
+  @JsonKey(name: 'orderdt_status')
+  final num? orderdtStatus;
+  @override
+  @JsonKey(name: 'cancel_qty')
+  final num? cancelQty;
+  @override
+  @JsonKey(name: 'from_table')
+  final String? fromTableName;
+  @override
+  @JsonKey(name: 'move_from')
+  final String? moveFromName;
+  @override
+  @JsonKey(name: 'move_from_time')
+  final String? moveFromTime;
+  @override
+  @JsonKey(name: 'move_remart')
+  final String? moveRemark;
+  @override
+  @JsonKey(name: 'order_src')
+  final String? orderSrc;
+  @override
+  @JsonKey(name: 'move_table')
+  final String? moveTableName;
+  @override
+  @JsonKey(name: 'move_name')
+  final String? moveName;
+  @override
+  @JsonKey(name: 'move_time')
+  final String? moveTime;
+  @override
+  @JsonKey(name: 'out_remark')
+  final String? outRemark;
+  @override
+  @JsonKey(name: 'move_qty')
+  final num? moveQty;
+  @override
+  @JsonKey(name: 'order_desc')
+  final String? orderDesc;
 
   @override
   String toString() {
-    return 'DetailOrderHistoryModel(listNo: $listNo, itemName: $itemName, unitPrice: $unitPrice, quantity: $quantity, amount: $amount, saveTime: $saveTime, saveName: $saveName, cancelTime: $cancelTime, cancelName: $cancelName, cancelRemark: $cancelRemark, orderdtType: $orderdtType)';
+    return 'DetailOrderHistoryModel(listNo: $listNo, itemName: $itemName, unitPrice: $unitPrice, quantity: $quantity, amount: $amount, saveTime: $saveTime, saveName: $saveName, cancelTime: $cancelTime, cancelName: $cancelName, cancelRemark: $cancelRemark, orderdtType: $orderdtType, orderdtStatus: $orderdtStatus, cancelQty: $cancelQty, fromTableName: $fromTableName, moveFromName: $moveFromName, moveFromTime: $moveFromTime, moveRemark: $moveRemark, orderSrc: $orderSrc, moveTableName: $moveTableName, moveName: $moveName, moveTime: $moveTime, outRemark: $outRemark, moveQty: $moveQty, orderDesc: $orderDesc)';
   }
 
   @override
@@ -332,24 +566,63 @@ class _$DetailOrderHistoryModelImpl implements _DetailOrderHistoryModel {
             (identical(other.cancelRemark, cancelRemark) ||
                 other.cancelRemark == cancelRemark) &&
             (identical(other.orderdtType, orderdtType) ||
-                other.orderdtType == orderdtType));
+                other.orderdtType == orderdtType) &&
+            (identical(other.orderdtStatus, orderdtStatus) ||
+                other.orderdtStatus == orderdtStatus) &&
+            (identical(other.cancelQty, cancelQty) ||
+                other.cancelQty == cancelQty) &&
+            (identical(other.fromTableName, fromTableName) ||
+                other.fromTableName == fromTableName) &&
+            (identical(other.moveFromName, moveFromName) ||
+                other.moveFromName == moveFromName) &&
+            (identical(other.moveFromTime, moveFromTime) ||
+                other.moveFromTime == moveFromTime) &&
+            (identical(other.moveRemark, moveRemark) ||
+                other.moveRemark == moveRemark) &&
+            (identical(other.orderSrc, orderSrc) ||
+                other.orderSrc == orderSrc) &&
+            (identical(other.moveTableName, moveTableName) ||
+                other.moveTableName == moveTableName) &&
+            (identical(other.moveName, moveName) ||
+                other.moveName == moveName) &&
+            (identical(other.moveTime, moveTime) ||
+                other.moveTime == moveTime) &&
+            (identical(other.outRemark, outRemark) ||
+                other.outRemark == outRemark) &&
+            (identical(other.moveQty, moveQty) || other.moveQty == moveQty) &&
+            (identical(other.orderDesc, orderDesc) ||
+                other.orderDesc == orderDesc));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      listNo,
-      itemName,
-      unitPrice,
-      quantity,
-      amount,
-      saveTime,
-      saveName,
-      cancelTime,
-      cancelName,
-      cancelRemark,
-      orderdtType);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        listNo,
+        itemName,
+        unitPrice,
+        quantity,
+        amount,
+        saveTime,
+        saveName,
+        cancelTime,
+        cancelName,
+        cancelRemark,
+        orderdtType,
+        orderdtStatus,
+        cancelQty,
+        fromTableName,
+        moveFromName,
+        moveFromTime,
+        moveRemark,
+        orderSrc,
+        moveTableName,
+        moveName,
+        moveTime,
+        outRemark,
+        moveQty,
+        orderDesc
+      ]);
 
   /// Create a copy of DetailOrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -380,7 +653,20 @@ abstract class _DetailOrderHistoryModel implements DetailOrderHistoryModel {
           @JsonKey(name: 'cancel_time') final String? cancelTime,
           @JsonKey(name: 'cancelname') final String? cancelName,
           @JsonKey(name: 'cancel_remark') final String? cancelRemark,
-          @JsonKey(name: 'orderdt_type') final num? orderdtType}) =
+          @JsonKey(name: 'orderdt_type') final num? orderdtType,
+          @JsonKey(name: 'orderdt_status') final num? orderdtStatus,
+          @JsonKey(name: 'cancel_qty') final num? cancelQty,
+          @JsonKey(name: 'from_table') final String? fromTableName,
+          @JsonKey(name: 'move_from') final String? moveFromName,
+          @JsonKey(name: 'move_from_time') final String? moveFromTime,
+          @JsonKey(name: 'move_remart') final String? moveRemark,
+          @JsonKey(name: 'order_src') final String? orderSrc,
+          @JsonKey(name: 'move_table') final String? moveTableName,
+          @JsonKey(name: 'move_name') final String? moveName,
+          @JsonKey(name: 'move_time') final String? moveTime,
+          @JsonKey(name: 'out_remark') final String? outRemark,
+          @JsonKey(name: 'move_qty') final num? moveQty,
+          @JsonKey(name: 'order_desc') final String? orderDesc}) =
       _$DetailOrderHistoryModelImpl;
 
   factory _DetailOrderHistoryModel.fromJson(Map<String, dynamic> json) =
@@ -419,6 +705,45 @@ abstract class _DetailOrderHistoryModel implements DetailOrderHistoryModel {
   @override
   @JsonKey(name: 'orderdt_type')
   num? get orderdtType;
+  @override
+  @JsonKey(name: 'orderdt_status')
+  num? get orderdtStatus;
+  @override
+  @JsonKey(name: 'cancel_qty')
+  num? get cancelQty;
+  @override
+  @JsonKey(name: 'from_table')
+  String? get fromTableName;
+  @override
+  @JsonKey(name: 'move_from')
+  String? get moveFromName;
+  @override
+  @JsonKey(name: 'move_from_time')
+  String? get moveFromTime;
+  @override
+  @JsonKey(name: 'move_remart')
+  String? get moveRemark;
+  @override
+  @JsonKey(name: 'order_src')
+  String? get orderSrc;
+  @override
+  @JsonKey(name: 'move_table')
+  String? get moveTableName;
+  @override
+  @JsonKey(name: 'move_name')
+  String? get moveName;
+  @override
+  @JsonKey(name: 'move_time')
+  String? get moveTime;
+  @override
+  @JsonKey(name: 'out_remark')
+  String? get outRemark;
+  @override
+  @JsonKey(name: 'move_qty')
+  num? get moveQty;
+  @override
+  @JsonKey(name: 'order_desc')
+  String? get orderDesc;
 
   /// Create a copy of DetailOrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.

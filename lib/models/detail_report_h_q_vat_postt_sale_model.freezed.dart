@@ -49,6 +49,8 @@ mixin _$DetailReportHQVatPosttSaleModel {
   List<Branch2>? get branchs => throw _privateConstructorUsedError; //listno
   @JsonKey(name: 'listno')
   int? get listno => throw _privateConstructorUsedError;
+  @JsonKey(name: 'branch_name')
+  String? get branchName => throw _privateConstructorUsedError;
 
   /// Serializes this DetailReportHQVatPosttSaleModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -85,7 +87,8 @@ abstract class $DetailReportHQVatPosttSaleModelCopyWith<$Res> {
       String? vatPosttSaleTotalexcludeamnt,
       @JsonKey(name: 'company_address') String? companyAddress,
       @JsonKey(name: 'branch') List<Branch2>? branchs,
-      @JsonKey(name: 'listno') int? listno});
+      @JsonKey(name: 'listno') int? listno,
+      @JsonKey(name: 'branch_name') String? branchName});
 }
 
 /// @nodoc
@@ -117,6 +120,7 @@ class _$DetailReportHQVatPosttSaleModelCopyWithImpl<$Res,
     Object? companyAddress = freezed,
     Object? branchs = freezed,
     Object? listno = freezed,
+    Object? branchName = freezed,
   }) {
     return _then(_value.copyWith(
       vatPosttSaleDocudate: freezed == vatPosttSaleDocudate
@@ -172,6 +176,10 @@ class _$DetailReportHQVatPosttSaleModelCopyWithImpl<$Res,
           ? _value.listno
           : listno // ignore: cast_nullable_to_non_nullable
               as int?,
+      branchName: freezed == branchName
+          ? _value.branchName
+          : branchName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -202,7 +210,8 @@ abstract class _$$DetailReportHQVatPosttSaleModelImplCopyWith<$Res>
       String? vatPosttSaleTotalexcludeamnt,
       @JsonKey(name: 'company_address') String? companyAddress,
       @JsonKey(name: 'branch') List<Branch2>? branchs,
-      @JsonKey(name: 'listno') int? listno});
+      @JsonKey(name: 'listno') int? listno,
+      @JsonKey(name: 'branch_name') String? branchName});
 }
 
 /// @nodoc
@@ -233,6 +242,7 @@ class __$$DetailReportHQVatPosttSaleModelImplCopyWithImpl<$Res>
     Object? companyAddress = freezed,
     Object? branchs = freezed,
     Object? listno = freezed,
+    Object? branchName = freezed,
   }) {
     return _then(_$DetailReportHQVatPosttSaleModelImpl(
       vatPosttSaleDocudate: freezed == vatPosttSaleDocudate
@@ -288,6 +298,10 @@ class __$$DetailReportHQVatPosttSaleModelImplCopyWithImpl<$Res>
           ? _value.listno
           : listno // ignore: cast_nullable_to_non_nullable
               as int?,
+      branchName: freezed == branchName
+          ? _value.branchName
+          : branchName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -313,7 +327,8 @@ class _$DetailReportHQVatPosttSaleModelImpl
       this.vatPosttSaleTotalexcludeamnt,
       @JsonKey(name: 'company_address') this.companyAddress,
       @JsonKey(name: 'branch') final List<Branch2>? branchs,
-      @JsonKey(name: 'listno') this.listno})
+      @JsonKey(name: 'listno') this.listno,
+      @JsonKey(name: 'branch_name') this.branchName})
       : _branchs = branchs;
 
   factory _$DetailReportHQVatPosttSaleModelImpl.fromJson(
@@ -368,10 +383,13 @@ class _$DetailReportHQVatPosttSaleModelImpl
   @override
   @JsonKey(name: 'listno')
   final int? listno;
+  @override
+  @JsonKey(name: 'branch_name')
+  final String? branchName;
 
   @override
   String toString() {
-    return 'DetailReportHQVatPosttSaleModel(vatPosttSaleDocudate: $vatPosttSaleDocudate, vatPosttSaleDocuno: $vatPosttSaleDocuno, vatPosttSaleArcustomerName: $vatPosttSaleArcustomerName, vatPosttSaleArcustomerTaxid: $vatPosttSaleArcustomerTaxid, vatPosttSaleArcustomerBranchNumber: $vatPosttSaleArcustomerBranchNumber, salehdPaymenttype: $salehdPaymenttype, vatPosttSaleBaseamnt: $vatPosttSaleBaseamnt, vatPosttSaleVatamnt: $vatPosttSaleVatamnt, vatPosttSaleSumamnt: $vatPosttSaleSumamnt, vatPosttSaleTotalexcludeamnt: $vatPosttSaleTotalexcludeamnt, companyAddress: $companyAddress, branchs: $branchs, listno: $listno)';
+    return 'DetailReportHQVatPosttSaleModel(vatPosttSaleDocudate: $vatPosttSaleDocudate, vatPosttSaleDocuno: $vatPosttSaleDocuno, vatPosttSaleArcustomerName: $vatPosttSaleArcustomerName, vatPosttSaleArcustomerTaxid: $vatPosttSaleArcustomerTaxid, vatPosttSaleArcustomerBranchNumber: $vatPosttSaleArcustomerBranchNumber, salehdPaymenttype: $salehdPaymenttype, vatPosttSaleBaseamnt: $vatPosttSaleBaseamnt, vatPosttSaleVatamnt: $vatPosttSaleVatamnt, vatPosttSaleSumamnt: $vatPosttSaleSumamnt, vatPosttSaleTotalexcludeamnt: $vatPosttSaleTotalexcludeamnt, companyAddress: $companyAddress, branchs: $branchs, listno: $listno, branchName: $branchName)';
   }
 
   @override
@@ -410,7 +428,9 @@ class _$DetailReportHQVatPosttSaleModelImpl
             (identical(other.companyAddress, companyAddress) ||
                 other.companyAddress == companyAddress) &&
             const DeepCollectionEquality().equals(other._branchs, _branchs) &&
-            (identical(other.listno, listno) || other.listno == listno));
+            (identical(other.listno, listno) || other.listno == listno) &&
+            (identical(other.branchName, branchName) ||
+                other.branchName == branchName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -429,7 +449,8 @@ class _$DetailReportHQVatPosttSaleModelImpl
       vatPosttSaleTotalexcludeamnt,
       companyAddress,
       const DeepCollectionEquality().hash(_branchs),
-      listno);
+      listno,
+      branchName);
 
   /// Create a copy of DetailReportHQVatPosttSaleModel
   /// with the given fields replaced by the non-null parameter values.
@@ -472,8 +493,9 @@ abstract class _DetailReportHQVatPosttSaleModel
       final String? vatPosttSaleTotalexcludeamnt,
       @JsonKey(name: 'company_address') final String? companyAddress,
       @JsonKey(name: 'branch') final List<Branch2>? branchs,
-      @JsonKey(name: 'listno')
-      final int? listno}) = _$DetailReportHQVatPosttSaleModelImpl;
+      @JsonKey(name: 'listno') final int? listno,
+      @JsonKey(name: 'branch_name')
+      final String? branchName}) = _$DetailReportHQVatPosttSaleModelImpl;
 
   factory _DetailReportHQVatPosttSaleModel.fromJson(Map<String, dynamic> json) =
       _$DetailReportHQVatPosttSaleModelImpl.fromJson;
@@ -517,6 +539,9 @@ abstract class _DetailReportHQVatPosttSaleModel
   @override
   @JsonKey(name: 'listno')
   int? get listno;
+  @override
+  @JsonKey(name: 'branch_name')
+  String? get branchName;
 
   /// Create a copy of DetailReportHQVatPosttSaleModel
   /// with the given fields replaced by the non-null parameter values.

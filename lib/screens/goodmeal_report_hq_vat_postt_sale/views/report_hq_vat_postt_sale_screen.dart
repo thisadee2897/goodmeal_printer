@@ -19,15 +19,15 @@ class ReportHQVatPosttSaleScreen extends ConsumerWidget {
         backgroundColor: Colors.black87,
         title: const Text(
           'Report HQ Vat PosttSale',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          style: TextStyle(color: Colors.white),
         ),
         actions: [
           FilledButton.icon(
             onPressed: () async {
               var pdfFile = ref.read(filePdfReportHQVatPosttSaleProvider);
-              await Printing.layoutPdf(onLayout: (format) async => pdfFile.save());
+              await Printing.layoutPdf(
+                onLayout: (format) async => pdfFile.save(),
+              );
             },
             label: const Text('Print'),
             icon: const Icon(Icons.print),
@@ -42,18 +42,23 @@ class ReportHQVatPosttSaleScreen extends ConsumerWidget {
           return filePdf == null
               ? Container()
               : SfPdfViewerTheme(
-                  data: const SfPdfViewerThemeData(backgroundColor: Colors.black87),
-                  child: Center(
-                    child: SizedBox(
-                      width: context.screenWidth > context.screenHeight ? context.screenHeight * 1.3 : context.screenWidth * 1.3,
-                      child: SfPdfViewer.memory(
-                        filePdf,
-                        canShowPaginationDialog: false,
-                        pageSpacing: 10,
-                      ),
+                data: const SfPdfViewerThemeData(
+                  backgroundColor: Colors.black87,
+                ),
+                child: Center(
+                  child: SizedBox(
+                    width:
+                        context.screenWidth > context.screenHeight
+                            ? context.screenHeight * 1.3
+                            : context.screenWidth * 1.3,
+                    child: SfPdfViewer.memory(
+                      filePdf,
+                      canShowPaginationDialog: false,
+                      pageSpacing: 10,
                     ),
                   ),
-                );
+                ),
+              );
         },
       ),
     );

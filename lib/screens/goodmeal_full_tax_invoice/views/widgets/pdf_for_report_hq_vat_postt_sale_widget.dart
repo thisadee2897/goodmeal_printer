@@ -177,9 +177,18 @@ class PDFGeneratorFullTaxInvoice {
                                         'ที่อยู่ : ',
                                         style: textStyleNormal,
                                       ),
-                                      pw.Text(
-                                        dt.header?.customerAddress ?? "-",
-                                        style: textStyleNormal,
+                                      // pw.Text(
+                                      //   dt.header?.customerAddress ?? "-",
+                                      //   style: textStyleNormal,
+                                      // ),
+                                      pw.Container(
+                                        width:
+                                            380, // กำหนดความกว้างสูงสุดของที่อยู่
+                                        child: pw.Text(
+                                          dt.header?.customerAddress ?? '',
+                                          style: textStyleNormal,
+                                          softWrap: true, // ให้ตัดบรรทัด
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -977,9 +986,14 @@ class PDFGeneratorFullTaxInvoice {
                                         'ที่อยู่ : ',
                                         style: textStyleNormal,
                                       ),
-                                      pw.Text(
-                                        dt.header?.customerAddress ?? "-",
-                                        style: textStyleNormal,
+                                      pw.Container(
+                                        width:
+                                            380, // กำหนดความกว้างสูงสุดของที่อยู่
+                                        child: pw.Text(
+                                          dt.header?.customerAddress ?? '',
+                                          style: textStyleNormal,
+                                          softWrap: true, // ให้ตัดบรรทัด
+                                        ),
                                       ),
                                     ],
                                   ),

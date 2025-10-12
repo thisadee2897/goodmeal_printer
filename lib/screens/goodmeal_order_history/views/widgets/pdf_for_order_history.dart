@@ -598,24 +598,52 @@ class PDFGeneratorOrderHistory {
                                     if (item.saveName != null &&
                                         item.saveName!.isNotEmpty)
                                       pw.Text(
-                                        '${item.saveName != null ? " บันทึกโดย ${item.saveName} " : ""}${item.saveTime != null ? " ${item.saveTime}" : ""}',
+                                        '${item.saveName != null ? "บันทึกโดย ${item.saveName} " : ""}${item.saveTime != null ? " ${item.saveTime}" : ""}',
                                         style: textStyleNormal.copyWith(
-                                          fontSize: 9,
+                                          fontSize: 11,
                                           color:
                                               PdfColors
-                                                  .blue, // ทำ save เป็นสีน้ำเงินให้เห็นชัด
+                                                  .orange, // ทำ save เป็นสีน้ำเงินให้เห็นชัด
                                         ),
                                       ),
                                     if (item.cancelName != null &&
-                                        item.cancelName!.isNotEmpty)
+                                        item.cancelName!.isNotEmpty &&
+                                        item.orderdtStatus == 5)
                                       pw.Text(
-                                        // '${item.cancelName != null ? " ยกเลิกโดย ${item.cancelName}" : " "}${item.cancelRemark != null && item.cancelRemark != " " ? " (${item.cancelRemark})" : ""}${item.cancelTime != null ? " ${item.cancelTime}" : ""}',
-                                        'ยกเลิก ( ${item.cancelRemark ?? ""} ) โดย ${item.cancelName} ${item.cancelTime}',
+                                        'ยกเลิก เหตุผล ${item.cancelRemark ?? ""} โดย ${item.cancelName} ${item.cancelTime}',
                                         style: textStyleNormal.copyWith(
-                                          fontSize: 9,
+                                          fontSize: 11,
                                           color:
                                               PdfColors
                                                   .red, // ทำ remark เป็นสีแดงให้เห็นชัด
+                                        ),
+                                      ),
+                                    if (item.cancelName != null &&
+                                        item.cancelName!.isNotEmpty &&
+                                        item.orderdtStatus != 5)
+                                      pw.Text(
+                                        'แก้ไขจาก ${(item.quantity! + item.cancelQty!)} เปลี่ยนเป็น ${item.quantity} เหตุผล ${item.cancelRemark ?? ""}  โดย ${item.cancelName} ${item.cancelTime}',
+                                        style: textStyleNormal.copyWith(
+                                          fontSize: 11,
+                                          color: PdfColors.red, // ทำ remark
+                                        ),
+                                      ),
+                                    if (item.fromTableName != null &&
+                                        item.fromTableName!.isNotEmpty)
+                                      pw.Text(
+                                        'ย้ายเข้า  ${item.moveQty} จากโต๊ะ ${item.fromTableName} ${item.orderSrc ?? ""} เหตุผล ${item.moveRemark ?? ""} โดย ${item.moveFromName} ${item.moveFromTime}',
+                                        style: textStyleNormal.copyWith(
+                                          fontSize: 11,
+                                          color: PdfColors.blue800, // ทำ remark
+                                        ),
+                                      ),
+                                    if (item.moveName != null &&
+                                        item.moveName!.isNotEmpty)
+                                      pw.Text(
+                                        'ย้ายออก ${item.moveQty} ไปโต๊ะ ${item.moveTableName} ${item.orderDesc ?? ""} เหตุผล ${item.outRemark ?? ""} โดย ${item.moveName} ${item.moveTime}',
+                                        style: textStyleNormal.copyWith(
+                                          fontSize: 11,
+                                          color: PdfColors.blue800, // ทำ remark
                                         ),
                                       ),
                                   ],

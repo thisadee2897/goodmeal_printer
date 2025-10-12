@@ -10,8 +10,10 @@ import 'package:pdf/widgets.dart' as pw;
 import '../../views/widgets/pdf_for_report_hq_vat_postt_sale_widget.dart';
 import 'get_company_data.dart';
 
-class DetailReportHQVatPosttSaleNotifier extends StateNotifier<AsyncValue<List<DetailReportHQVatPosttSaleModel>>> {
-  DetailReportHQVatPosttSaleNotifier(this.ref) : super(const AsyncValue.data([]));
+class DetailReportHQVatPosttSaleNotifier
+    extends StateNotifier<AsyncValue<List<DetailReportHQVatPosttSaleModel>>> {
+  DetailReportHQVatPosttSaleNotifier(this.ref)
+    : super(const AsyncValue.data([]));
   final Ref ref;
   Future<void> get({required Map<String, dynamic> body}) async {
     if (body.isEmpty) {
@@ -20,11 +22,14 @@ class DetailReportHQVatPosttSaleNotifier extends StateNotifier<AsyncValue<List<D
     }
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      List<DetailReportHQVatPosttSaleModel> response = await ref.read(apiDetailReportHQVatPosttSale).get(body);
+      List<DetailReportHQVatPosttSaleModel> response = await ref
+          .read(apiDetailReportHQVatPosttSale)
+          .get(body);
       return response;
     });
     if (state.hasValue) {
-      HDReportHQVatPosttSaleModel? hd = ref.read(hdReportHQVatPosttSaleProvider).value;
+      HDReportHQVatPosttSaleModel? hd =
+          ref.read(hdReportHQVatPosttSaleProvider).value;
       final company = ref.read(companyDataProvider);
       pw.Document pdfFile = pw.Document();
       List<DetailReportHQVatPosttSaleModel> dataWidget = [];
@@ -35,7 +40,11 @@ class DetailReportHQVatPosttSaleNotifier extends StateNotifier<AsyncValue<List<D
       if (hd?.branchsName == null) {
         try {
           hd = hd?.copyWith(
-            branchsName: state.value!.map((e) => e.vatPosttSaleArcustomerBranchNumber ?? '').toSet().toList(),
+            branchsName:
+                state.value!
+                    .map((e) => e.vatPosttSaleArcustomerBranchNumber ?? '')
+                    .toSet()
+                    .toList(),
           );
         } catch (e, stx) {
           if (kDebugMode) print('Error setting branchsName: $e');
@@ -47,18 +56,42 @@ class DetailReportHQVatPosttSaleNotifier extends StateNotifier<AsyncValue<List<D
       // hd!.branchsName!.addAll(state.value!.map((e) => e.vatPosttSaleArcustomerBranchNumber ?? '').toSet().toList());
       for (int i = 1; i <= state.value!.length; i++) {
         dataWidget.add(state.value![i - 1]);
-        if (i % 20 == 0) {
-          var page = await PDFGeneratorReportHQVatPosttSale().generate(hd: hd!, dt: dataWidget, company: company);
+        if (i % 19 == 0) {
+          var page = await PDFGeneratorReportHQVatPosttSale().generate(
+            hd: hd!,
+            dt: dataWidget,
+            company: company,
+          );
           pdfFile.addPage(page);
           dataWidget = [];
         } else {
           if (i == state.value!.length) {
             Map<String, num> summary = {
-              'Baseamnt': state.value!.fold<num>(0, (previousValue, element) => previousValue + num.parse(element.vatPosttSaleBaseamnt.toString())),
-              'Vatamnt': state.value!.fold<num>(0, (previousValue, element) => previousValue + num.parse(element.vatPosttSaleVatamnt.toString())),
-              'Sumamnt': state.value!.fold<num>(0, (previousValue, element) => previousValue + num.parse(element.vatPosttSaleSumamnt.toString())),
+              'Baseamnt': state.value!.fold<num>(
+                0,
+                (previousValue, element) =>
+                    previousValue +
+                    num.parse(element.vatPosttSaleBaseamnt.toString()),
+              ),
+              'Vatamnt': state.value!.fold<num>(
+                0,
+                (previousValue, element) =>
+                    previousValue +
+                    num.parse(element.vatPosttSaleVatamnt.toString()),
+              ),
+              'Sumamnt': state.value!.fold<num>(
+                0,
+                (previousValue, element) =>
+                    previousValue +
+                    num.parse(element.vatPosttSaleSumamnt.toString()),
+              ),
             };
-            var page = await PDFGeneratorReportHQVatPosttSale().generate(hd: hd!, dt: dataWidget, company: company, summary: summary);
+            var page = await PDFGeneratorReportHQVatPosttSale().generate(
+              hd: hd!,
+              dt: dataWidget,
+              company: company,
+              summary: summary,
+            );
             pdfFile.addPage(page);
           }
         }
@@ -71,8 +104,12 @@ class DetailReportHQVatPosttSaleNotifier extends StateNotifier<AsyncValue<List<D
         List<int> intFile = await pdfFile.save();
         String base64File = base64Encode(intFile);
         List<int> listPDF = base64Decode(base64File);
-        ref.read(filePdfReportHQVatPosttSaleViewProvider.notifier).state = Uint8List.fromList(listPDF);
-        ref.read(filePdfReportHQVatPosttSaleFileProvider.notifier).state = File.fromRawPath(Uint8List.fromList(listPDF));
+        ref
+            .read(filePdfReportHQVatPosttSaleViewProvider.notifier)
+            .state = Uint8List.fromList(listPDF);
+        ref
+            .read(filePdfReportHQVatPosttSaleFileProvider.notifier)
+            .state = File.fromRawPath(Uint8List.fromList(listPDF));
         if (kDebugMode) print('Success filePdfSaleViewProvider');
       } catch (e, stx) {
         if (kDebugMode) print('Error filePdfSaleViewProvider : $e');
@@ -85,11 +122,19 @@ class DetailReportHQVatPosttSaleNotifier extends StateNotifier<AsyncValue<List<D
   }
 }
 
-final detailReportHQVatPosttSaleProvider = StateNotifierProvider<DetailReportHQVatPosttSaleNotifier, AsyncValue<List<DetailReportHQVatPosttSaleModel>>>(
-    (ref) => DetailReportHQVatPosttSaleNotifier(ref));
+final detailReportHQVatPosttSaleProvider = StateNotifierProvider<
+  DetailReportHQVatPosttSaleNotifier,
+  AsyncValue<List<DetailReportHQVatPosttSaleModel>>
+>((ref) => DetailReportHQVatPosttSaleNotifier(ref));
 
-final filePdfReportHQVatPosttSaleProvider = StateProvider<pw.Document>((ref) => pw.Document());
-final filePdfReportHQVatPosttSaleViewProvider = StateProvider<Uint8List?>((ref) => null);
-final filePdfReportHQVatPosttSaleFileProvider = StateProvider<File?>((ref) => null);
+final filePdfReportHQVatPosttSaleProvider = StateProvider<pw.Document>(
+  (ref) => pw.Document(),
+);
+final filePdfReportHQVatPosttSaleViewProvider = StateProvider<Uint8List?>(
+  (ref) => null,
+);
+final filePdfReportHQVatPosttSaleFileProvider = StateProvider<File?>(
+  (ref) => null,
+);
 final startDateProvider = StateProvider<DateTime>((ref) => DateTime.now());
 final endDateProvider = StateProvider<DateTime>((ref) => DateTime.now());

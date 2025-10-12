@@ -42,22 +42,36 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     navigatorKey: _rootNavigatorKey,
     // errorPageBuilder: (context, state) => const NoTransitionPage(child: ErrorScreen()),
     routes: [
-      GoRoute(path: Routes.error, pageBuilder: (context, state) => const NoTransitionPage(child: ErrorScreen())),
-      GoRoute(path: Routes.initPath, pageBuilder: (context, state) => const NoTransitionPage(child: InitScreeen())),
+      GoRoute(
+        path: Routes.error,
+        pageBuilder:
+            (context, state) => const NoTransitionPage(child: ErrorScreen()),
+      ),
+      GoRoute(
+        path: Routes.initPath,
+        pageBuilder:
+            (context, state) => const NoTransitionPage(child: InitScreeen()),
+      ),
       GoRoute(
         path: Routes.reportHQVatPosttSaleScreen,
         redirect: (context, state) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             try {
-              final companyBase64Id = state.uri.queryParameters['Y29tcGFueV9pZA'];
+              final companyBase64Id =
+                  state.uri.queryParameters['Y29tcGFueV9pZA'];
               // final masterBranchIdBase64 = state.uri.queryParameters['bWFzdGVyX2JyYW5jaF9pZA'];
-              List<String> masterBranchBase64List = state.uri.queryParametersAll['bWFzdGVyX2JyYW5jaF9pZA'] ?? [];
-              if (kDebugMode) print('masterBranchBase64List: $masterBranchBase64List');
-              final startDateBase64 = state.uri.queryParameters['c3RhcnRfZGF0ZQ'];
+              List<String> masterBranchBase64List =
+                  state.uri.queryParametersAll['bWFzdGVyX2JyYW5jaF9pZA'] ?? [];
+              if (kDebugMode)
+                print('masterBranchBase64List: $masterBranchBase64List');
+              final startDateBase64 =
+                  state.uri.queryParameters['c3RhcnRfZGF0ZQ'];
               final endDateBase64 = state.uri.queryParameters['ZW5kX2RhdGU'];
               List<int> masterBranchIds =
                   masterBranchBase64List
-                      .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                      .map(
+                        (b64) => int.tryParse(utf8.decode(base64Decode(b64))),
+                      )
                       .whereType<int>() // กรองค่า null ออก
                       .toList();
               // if (kDebugMode) print('masterBranchIdBase64: $masterBranchIdBase64');
@@ -72,12 +86,25 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               if (kDebugMode) print('masterBranchIds: $masterBranchIds');
               if (kDebugMode) print('startDate: $startDate');
               if (kDebugMode) print('endDate: $endDate');
-              ref.read(startDateProvider.notifier).state = DateTime.parse(startDate);
-              ref.read(endDateProvider.notifier).state = DateTime.parse(endDate);
-              await ref.read(hdReportHQVatPosttSaleProvider.notifier).get(id: companyId);
+              ref.read(startDateProvider.notifier).state = DateTime.parse(
+                startDate,
+              );
+              ref.read(endDateProvider.notifier).state = DateTime.parse(
+                endDate,
+              );
+              // await ref.read(hdReportHQVatPosttSaleProvider.notifier).get(id: companyId);
+              await ref
+                  .read(hdReportHQVatPosttSaleProvider.notifier)
+                  .get(id: companyId);
               await ref
                   .read(detailReportHQVatPosttSaleProvider.notifier)
-                  .get(body: {"master_branch_id": masterBranchIds.join(','), "start_date": startDate, "end_date": endDate});
+                  .get(
+                    body: {
+                      "master_branch_id": masterBranchIds.join(','),
+                      "start_date": startDate,
+                      "end_date": endDate,
+                    },
+                  );
             } catch (e) {
               ref.read(routerHelperProvider).goPath('/error');
               if (kDebugMode) print('error: $e');
@@ -95,18 +122,29 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         redirect: (context, state) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             try {
-              final companyBase64Id = state.uri.queryParameters['Y29tcGFueV9pZA'];
+              final companyBase64Id =
+                  state.uri.queryParameters['Y29tcGFueV9pZA'];
               if (kDebugMode) print('companyBase64Id: $companyBase64Id');
-              List<String> salehdIdBase64List = state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
+              List<String> salehdIdBase64List =
+                  state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
               List<int> salehdIdIds =
                   salehdIdBase64List
-                      .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                      .map(
+                        (b64) => int.tryParse(utf8.decode(base64Decode(b64))),
+                      )
                       .whereType<int>() // กรองค่า null ออก
                       .toList();
               var companyId = idFormBase64(id: companyBase64Id);
               // print(salehdIdIds.join(','));
               // print('companyId: $companyId');
-              await ref.read(simplifiedTaxInvoiceProvider.notifier).get(body: {"salehd_id": salehdIdIds.join(','), "company": companyId});
+              await ref
+                  .read(simplifiedTaxInvoiceProvider.notifier)
+                  .get(
+                    body: {
+                      "salehd_id": salehdIdIds.join(','),
+                      "company": companyId,
+                    },
+                  );
             } catch (e) {
               ref.read(routerHelperProvider).goPath('/error');
               if (kDebugMode) print('error: $e');
@@ -124,25 +162,45 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         redirect: (context, state) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             try {
-              final companyBase64Id = state.uri.queryParameters['Y29tcGFueV9pZA'];
+              final companyBase64Id =
+                  state.uri.queryParameters['Y29tcGFueV9pZA'];
               final originalBase64 = state.uri.queryParameters['b3JpZ2luYWw'];
               final copyBase64 = state.uri.queryParameters['Y29weQ'];
-              final simplified = state.uri.queryParameters['c2ltcGxpZmllZF9pbmNvaW5n'] == 'dHJ1ZQ==';
-              List<String> salehdIdBase64List = state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
+              final simplified =
+                  state.uri.queryParameters['c2ltcGxpZmllZF9pbmNvaW5n'] ==
+                  'dHJ1ZQ==';
+              List<String> salehdIdBase64List =
+                  state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
               List<int> salehdIdIds =
                   salehdIdBase64List
-                      .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                      .map(
+                        (b64) => int.tryParse(utf8.decode(base64Decode(b64))),
+                      )
                       .whereType<int>() // กรองค่า null ออก
                       .toList();
               var companyId = idFormBase64(id: companyBase64Id);
               bool originalBool = bool.parse(idFormBase64(id: originalBase64));
               bool copyBool = bool.parse(idFormBase64(id: copyBase64));
               if (simplified) {
-                await ref.read(simplifiedTaxInvoiceProvider.notifier).get(body: {"salehd_id": salehdIdIds.join(','), "company": companyId});
+                await ref
+                    .read(simplifiedTaxInvoiceProvider.notifier)
+                    .get(
+                      body: {
+                        "salehd_id": salehdIdIds.join(','),
+                        "company": companyId,
+                      },
+                    );
               }
               await ref
                   .read(fullTaxInvoiceProvider.notifier)
-                  .get(body: {"original": originalBool, "copy": copyBool, "salehd_id": salehdIdIds.join(','), "company": companyId});
+                  .get(
+                    body: {
+                      "original": originalBool,
+                      "copy": copyBool,
+                      "salehd_id": salehdIdIds.join(','),
+                      "company": companyId,
+                    },
+                  );
             } catch (e) {
               ref.read(routerHelperProvider).goPath('/error');
               if (kDebugMode) print('error: $e');
@@ -160,31 +218,53 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         redirect: (context, state) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             try {
-              final startDateBase64 = state.uri.queryParameters['c3RhcnRfZGF0ZV9pbmNvaW5n'];
-              final endDateBase64 = state.uri.queryParameters['ZW5kX2RhdGVfaW5jb2luZw'];
-              final masterBranchBase64List = state.uri.queryParametersAll['bWFzdGVyX2Jyb25jaF9pZA'] ?? [];
-              final masterProductGroupBase64List = state.uri.queryParametersAll['bWFzdGVyX3Byb2R1Y3RfZ3JvdXBfaWQ'] ?? [];
-              final typeViewBase64 = state.uri.queryParameters['dHlwZV92aWV3'] ?? '';
-              final startTimeBase64 = state.uri.queryParameters['c3RhcnRfVGltZV9pbmNvaW5n'] ?? '';
-              final endTimeBase64 = state.uri.queryParameters['ZW5kX1RpbWVfaW5jb2luZw'] ?? '';
+              final startDateBase64 =
+                  state.uri.queryParameters['c3RhcnRfZGF0ZV9pbmNvaW5n'];
+              final endDateBase64 =
+                  state.uri.queryParameters['ZW5kX2RhdGVfaW5jb2luZw'];
+              final masterBranchBase64List =
+                  state.uri.queryParametersAll['bWFzdGVyX2Jyb25jaF9pZA'] ?? [];
+              final masterProductGroupBase64List =
+                  state
+                      .uri
+                      .queryParametersAll['bWFzdGVyX3Byb2R1Y3RfZ3JvdXBfaWQ'] ??
+                  [];
+              final typeViewBase64 =
+                  state.uri.queryParameters['dHlwZV92aWV3'] ?? '';
+              final startTimeBase64 =
+                  state.uri.queryParameters['c3RhcnRfVGltZV9pbmNvaW5n'] ?? '';
+              final endTimeBase64 =
+                  state.uri.queryParameters['ZW5kX1RpbWVfaW5jb2luZw'] ?? '';
               List<int> masterBranchId =
                   masterBranchBase64List
-                      .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                      .map(
+                        (b64) => int.tryParse(utf8.decode(base64Decode(b64))),
+                      )
                       .whereType<int>() // กรองค่า null ออก
                       .toList();
               List<int> masterProductGroupId =
                   masterProductGroupBase64List
-                      .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                      .map(
+                        (b64) => int.tryParse(utf8.decode(base64Decode(b64))),
+                      )
                       .whereType<int>() // กรองค่า null ออก
                       .toList();
               String startDate = idFormBase64(id: startDateBase64);
               String endDate = idFormBase64(id: endDateBase64);
               String startTime = idFormBase64(id: startTimeBase64);
               String endTime = idFormBase64(id: endTimeBase64);
-              int typeView = int.parse(idFormBase64(id: typeViewBase64).toString());
-              ref.read(showProductReportSaleByGroupSavetimeProvider.notifier).state = typeView;
-              ref.read(endDateReportSaleByGroupSavetimeProvider.notifier).state = DateTime.parse(endDate);
-              ref.read(startDateReportSaleByGroupSavetimeProvider.notifier).state = DateTime.parse(startDate);
+              int typeView = int.parse(
+                idFormBase64(id: typeViewBase64).toString(),
+              );
+              ref
+                  .read(showProductReportSaleByGroupSavetimeProvider.notifier)
+                  .state = typeView;
+              ref
+                  .read(endDateReportSaleByGroupSavetimeProvider.notifier)
+                  .state = DateTime.parse(endDate);
+              ref
+                  .read(startDateReportSaleByGroupSavetimeProvider.notifier)
+                  .state = DateTime.parse(startDate);
               await ref
                   .read(reportSaleByGroupSavetimeProvider.notifier)
                   .get(
@@ -209,7 +289,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           return;
         },
         pageBuilder: (context, state) {
-          return const NoTransitionPage(child: ReportSaleByGroupSavetimeScreen());
+          return const NoTransitionPage(
+            child: ReportSaleByGroupSavetimeScreen(),
+          );
         },
       ),
       GoRoute(
@@ -243,21 +325,33 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               try {
                 // Step 1: ดึงค่าพารามิเตอร์จาก URL
-                final salehdIdBase64List = state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
-                if (kDebugMode) print('salehdIdBase64List: $salehdIdBase64List');
+                final salehdIdBase64List =
+                    state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
+                if (kDebugMode)
+                  print('salehdIdBase64List: $salehdIdBase64List');
                 List<int> salehdIds =
                     salehdIdBase64List
-                        .map((b64) => int.tryParse(utf8.decode(base64Decode(b64))))
+                        .map(
+                          (b64) => int.tryParse(utf8.decode(base64Decode(b64))),
+                        )
                         .whereType<int>() // กรองค่า null ออก
                         .toList();
                 if (kDebugMode) print('salehdIds: $salehdIds');
                 // Step 2: ดึงค่า แปลงจาก base64 เป็น id ปกติ
-                final companyIdBase64 = state.uri.queryParameters['Y29tcGFueV9pZA'] ?? '';
+                final companyIdBase64 =
+                    state.uri.queryParameters['Y29tcGFueV9pZA'] ?? '';
                 if (kDebugMode) print('companyIdBase64: $companyIdBase64');
                 String companyId = idFormBase64(id: companyIdBase64);
                 if (kDebugMode) print('companyId: $companyId');
                 // Step 3: เรียกใช้งานฟังก์ชัน get() พร้อมส่งพารามิเตอร์
-                await ref.read(orderHistoriesProvider.notifier).get(body: {"salehd_id": salehdIds.toList(), "company_id": int.parse(companyId)});
+                await ref
+                    .read(orderHistoriesProvider.notifier)
+                    .get(
+                      body: {
+                        "salehd_id": salehdIds.toList(),
+                        "company_id": int.parse(companyId),
+                      },
+                    );
               } catch (e, stx) {
                 if (kDebugMode) print('error: $e');
                 if (kDebugMode) print('stackTrace: $stx');

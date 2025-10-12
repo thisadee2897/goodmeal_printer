@@ -28,6 +28,7 @@ _$DetailReportHQVatPosttSaleModelImpl
               ?.map((e) => Branch2.fromJson(e as Map<String, dynamic>))
               .toList(),
           listno: (json['listno'] as num?)?.toInt(),
+          branchName: json['branch_name'] as String?,
         );
 
 Map<String, dynamic> _$$DetailReportHQVatPosttSaleModelImplToJson(
@@ -47,4 +48,5 @@ Map<String, dynamic> _$$DetailReportHQVatPosttSaleModelImplToJson(
       'company_address': instance.companyAddress,
       'branch': instance.branchs,
       'listno': instance.listno,
+      'branch_name': instance.branchName,
     };

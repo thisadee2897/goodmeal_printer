@@ -7,15 +7,20 @@ class HDReportHQVatPosttSaleApi {
   final String _detail = 'get_company_data';
 
   Future<HDReportHQVatPosttSaleModel> get(Map<String, dynamic> body) async {
-    Response<dynamic> response = await ref.read(apiClientProvider).post(_detail, data: body);
+    Response<dynamic> response = await ref
+        .read(apiClientProvider)
+        .post(_detail, data: body);
     if (response.data == null) {
       ref.read(routerHelperProvider).goPath('/error');
       return const HDReportHQVatPosttSaleModel();
     } else {
-      Map<String, dynamic> data = List<Map<String, dynamic>>.from(response.data).first;
+      Map<String, dynamic> data =
+          List<Map<String, dynamic>>.from(response.data).first;
       return HDReportHQVatPosttSaleModel.fromJson(data);
     }
   }
 }
 
-final apiHDReportHQVatPosttSale = Provider<HDReportHQVatPosttSaleApi>((ref) => HDReportHQVatPosttSaleApi(ref: ref));
+final apiHDReportHQVatPosttSale = Provider<HDReportHQVatPosttSaleApi>(
+  (ref) => HDReportHQVatPosttSaleApi(ref: ref),
+);
