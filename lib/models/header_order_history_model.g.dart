@@ -20,6 +20,7 @@ _$HeaderOrderHistoryModelImpl _$$HeaderOrderHistoryModelImplFromJson(
       tableNumber: json['table_number'] as String?,
       docuNo: json['docu_no'] as String?,
       docuDate: json['docu_date'] as String?,
+      machineName: json['machine_name'] as String?,
     );
 
 Map<String, dynamic> _$$HeaderOrderHistoryModelImplToJson(
@@ -36,4 +37,5 @@ Map<String, dynamic> _$$HeaderOrderHistoryModelImplToJson(
       'table_number': instance.tableNumber,
       'docu_no': instance.docuNo,
       'docu_date': instance.docuDate,
+      'machine_name': instance.machineName,
     };

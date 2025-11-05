@@ -43,6 +43,8 @@ mixin _$HeaderOrderHistoryModel {
   String? get docuNo => throw _privateConstructorUsedError;
   @JsonKey(name: 'docu_date')
   String? get docuDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'machine_name')
+  String? get machineName => throw _privateConstructorUsedError;
 
   /// Serializes this HeaderOrderHistoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -72,7 +74,8 @@ abstract class $HeaderOrderHistoryModelCopyWith<$Res> {
       @JsonKey(name: 'customer_name') String? customerName,
       @JsonKey(name: 'table_number') String? tableNumber,
       @JsonKey(name: 'docu_no') String? docuNo,
-      @JsonKey(name: 'docu_date') String? docuDate});
+      @JsonKey(name: 'docu_date') String? docuDate,
+      @JsonKey(name: 'machine_name') String? machineName});
 }
 
 /// @nodoc
@@ -102,6 +105,7 @@ class _$HeaderOrderHistoryModelCopyWithImpl<$Res,
     Object? tableNumber = freezed,
     Object? docuNo = freezed,
     Object? docuDate = freezed,
+    Object? machineName = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -148,6 +152,10 @@ class _$HeaderOrderHistoryModelCopyWithImpl<$Res,
           ? _value.docuDate
           : docuDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      machineName: freezed == machineName
+          ? _value.machineName
+          : machineName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -173,7 +181,8 @@ abstract class _$$HeaderOrderHistoryModelImplCopyWith<$Res>
       @JsonKey(name: 'customer_name') String? customerName,
       @JsonKey(name: 'table_number') String? tableNumber,
       @JsonKey(name: 'docu_no') String? docuNo,
-      @JsonKey(name: 'docu_date') String? docuDate});
+      @JsonKey(name: 'docu_date') String? docuDate,
+      @JsonKey(name: 'machine_name') String? machineName});
 }
 
 /// @nodoc
@@ -202,6 +211,7 @@ class __$$HeaderOrderHistoryModelImplCopyWithImpl<$Res>
     Object? tableNumber = freezed,
     Object? docuNo = freezed,
     Object? docuDate = freezed,
+    Object? machineName = freezed,
   }) {
     return _then(_$HeaderOrderHistoryModelImpl(
       title: freezed == title
@@ -248,6 +258,10 @@ class __$$HeaderOrderHistoryModelImplCopyWithImpl<$Res>
           ? _value.docuDate
           : docuDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      machineName: freezed == machineName
+          ? _value.machineName
+          : machineName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -266,7 +280,8 @@ class _$HeaderOrderHistoryModelImpl implements _HeaderOrderHistoryModel {
       @JsonKey(name: 'customer_name') this.customerName,
       @JsonKey(name: 'table_number') this.tableNumber,
       @JsonKey(name: 'docu_no') this.docuNo,
-      @JsonKey(name: 'docu_date') this.docuDate});
+      @JsonKey(name: 'docu_date') this.docuDate,
+      @JsonKey(name: 'machine_name') this.machineName});
 
   factory _$HeaderOrderHistoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$HeaderOrderHistoryModelImplFromJson(json);
@@ -304,10 +319,13 @@ class _$HeaderOrderHistoryModelImpl implements _HeaderOrderHistoryModel {
   @override
   @JsonKey(name: 'docu_date')
   final String? docuDate;
+  @override
+  @JsonKey(name: 'machine_name')
+  final String? machineName;
 
   @override
   String toString() {
-    return 'HeaderOrderHistoryModel(title: $title, companyLogoImageNetwork: $companyLogoImageNetwork, companyName: $companyName, companyAddress: $companyAddress, companyPhoneNumber: $companyPhoneNumber, companyTaxId: $companyTaxId, employeeName: $employeeName, customerName: $customerName, tableNumber: $tableNumber, docuNo: $docuNo, docuDate: $docuDate)';
+    return 'HeaderOrderHistoryModel(title: $title, companyLogoImageNetwork: $companyLogoImageNetwork, companyName: $companyName, companyAddress: $companyAddress, companyPhoneNumber: $companyPhoneNumber, companyTaxId: $companyTaxId, employeeName: $employeeName, customerName: $customerName, tableNumber: $tableNumber, docuNo: $docuNo, docuDate: $docuDate, machineName: $machineName)';
   }
 
   @override
@@ -335,7 +353,9 @@ class _$HeaderOrderHistoryModelImpl implements _HeaderOrderHistoryModel {
                 other.tableNumber == tableNumber) &&
             (identical(other.docuNo, docuNo) || other.docuNo == docuNo) &&
             (identical(other.docuDate, docuDate) ||
-                other.docuDate == docuDate));
+                other.docuDate == docuDate) &&
+            (identical(other.machineName, machineName) ||
+                other.machineName == machineName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -352,7 +372,8 @@ class _$HeaderOrderHistoryModelImpl implements _HeaderOrderHistoryModel {
       customerName,
       tableNumber,
       docuNo,
-      docuDate);
+      docuDate,
+      machineName);
 
   /// Create a copy of HeaderOrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -384,8 +405,9 @@ abstract class _HeaderOrderHistoryModel implements HeaderOrderHistoryModel {
       @JsonKey(name: 'customer_name') final String? customerName,
       @JsonKey(name: 'table_number') final String? tableNumber,
       @JsonKey(name: 'docu_no') final String? docuNo,
-      @JsonKey(name: 'docu_date')
-      final String? docuDate}) = _$HeaderOrderHistoryModelImpl;
+      @JsonKey(name: 'docu_date') final String? docuDate,
+      @JsonKey(name: 'machine_name')
+      final String? machineName}) = _$HeaderOrderHistoryModelImpl;
 
   factory _HeaderOrderHistoryModel.fromJson(Map<String, dynamic> json) =
       _$HeaderOrderHistoryModelImpl.fromJson;
@@ -423,6 +445,9 @@ abstract class _HeaderOrderHistoryModel implements HeaderOrderHistoryModel {
   @override
   @JsonKey(name: 'docu_date')
   String? get docuDate;
+  @override
+  @JsonKey(name: 'machine_name')
+  String? get machineName;
 
   /// Create a copy of HeaderOrderHistoryModel
   /// with the given fields replaced by the non-null parameter values.

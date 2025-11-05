@@ -18,6 +18,7 @@ class HeaderOrderHistoryModel with _$HeaderOrderHistoryModel {
     @JsonKey(name: 'table_number') String? tableNumber,
     @JsonKey(name: 'docu_no') String? docuNo,
     @JsonKey(name: 'docu_date') String? docuDate,
+    @JsonKey(name: 'machine_name') String? machineName,
   }) = _HeaderOrderHistoryModel;
 
   factory HeaderOrderHistoryModel.fromJson(Map<String, dynamic> json) =>

@@ -179,6 +179,24 @@ class PDFGeneratorOrderHistory {
                                   ],
                                 ),
                               ),
+                              pw.SizedBox(
+                                width: double.infinity,
+                                child: pw.Row(
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
+                                  mainAxisAlignment: pw.MainAxisAlignment.start,
+                                  children: [
+                                    pw.Text(
+                                      'เครื่อง : ',
+                                      style: textStyleNormal,
+                                    ),
+                                    pw.Text(
+                                      "${dt.header!.machineName}",
+                                      style: textStyleNormal,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -644,6 +662,16 @@ class PDFGeneratorOrderHistory {
                                         style: textStyleNormal.copyWith(
                                           fontSize: 11,
                                           color: PdfColors.blue800, // ทำ remark
+                                        ),
+                                      ),
+                                    if (item.orderdtStatus == 2)
+                                      pw.Text(
+                                        'ลบรายการ  โดย ${item.saveName} ${item.saveTime}',
+                                        style: textStyleNormal.copyWith(
+                                          fontSize: 11,
+                                          color:
+                                              PdfColors
+                                                  .red, // ทำ remark เป็นสีแดงให้เห็นชัด
                                         ),
                                       ),
                                   ],
