@@ -179,6 +179,24 @@ class PDFGeneratorSimplifiedTaxInvoice {
                                   ],
                                 ),
                               ),
+                              pw.SizedBox(
+                                width: double.infinity,
+                                child: pw.Row(
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
+                                  mainAxisAlignment: pw.MainAxisAlignment.start,
+                                  children: [
+                                    pw.Text(
+                                      'เครื่อง : ',
+                                      style: textStyleNormal,
+                                    ),
+                                    pw.Text(
+                                      "${dt.header!.machineName}",
+                                      style: textStyleNormal,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),

@@ -43,6 +43,8 @@ mixin _$HeaderSimplifiedTaxInvoiceModel {
   String? get docuNo => throw _privateConstructorUsedError;
   @JsonKey(name: 'docu_date')
   String? get docuDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'machine_name')
+  String? get machineName => throw _privateConstructorUsedError;
 
   /// Serializes this HeaderSimplifiedTaxInvoiceModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -74,7 +76,8 @@ abstract class $HeaderSimplifiedTaxInvoiceModelCopyWith<$Res> {
       @JsonKey(name: 'customer_name') String? customerName,
       @JsonKey(name: 'table_number') String? tableNumber,
       @JsonKey(name: 'docu_no') String? docuNo,
-      @JsonKey(name: 'docu_date') String? docuDate});
+      @JsonKey(name: 'docu_date') String? docuDate,
+      @JsonKey(name: 'machine_name') String? machineName});
 }
 
 /// @nodoc
@@ -104,6 +107,7 @@ class _$HeaderSimplifiedTaxInvoiceModelCopyWithImpl<$Res,
     Object? tableNumber = freezed,
     Object? docuNo = freezed,
     Object? docuDate = freezed,
+    Object? machineName = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -150,6 +154,10 @@ class _$HeaderSimplifiedTaxInvoiceModelCopyWithImpl<$Res,
           ? _value.docuDate
           : docuDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      machineName: freezed == machineName
+          ? _value.machineName
+          : machineName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -175,7 +183,8 @@ abstract class _$$HeaderSimplifiedTaxInvoiceModelImplCopyWith<$Res>
       @JsonKey(name: 'customer_name') String? customerName,
       @JsonKey(name: 'table_number') String? tableNumber,
       @JsonKey(name: 'docu_no') String? docuNo,
-      @JsonKey(name: 'docu_date') String? docuDate});
+      @JsonKey(name: 'docu_date') String? docuDate,
+      @JsonKey(name: 'machine_name') String? machineName});
 }
 
 /// @nodoc
@@ -204,6 +213,7 @@ class __$$HeaderSimplifiedTaxInvoiceModelImplCopyWithImpl<$Res>
     Object? tableNumber = freezed,
     Object? docuNo = freezed,
     Object? docuDate = freezed,
+    Object? machineName = freezed,
   }) {
     return _then(_$HeaderSimplifiedTaxInvoiceModelImpl(
       title: freezed == title
@@ -250,6 +260,10 @@ class __$$HeaderSimplifiedTaxInvoiceModelImplCopyWithImpl<$Res>
           ? _value.docuDate
           : docuDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      machineName: freezed == machineName
+          ? _value.machineName
+          : machineName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -269,7 +283,8 @@ class _$HeaderSimplifiedTaxInvoiceModelImpl
       @JsonKey(name: 'customer_name') this.customerName,
       @JsonKey(name: 'table_number') this.tableNumber,
       @JsonKey(name: 'docu_no') this.docuNo,
-      @JsonKey(name: 'docu_date') this.docuDate});
+      @JsonKey(name: 'docu_date') this.docuDate,
+      @JsonKey(name: 'machine_name') this.machineName});
 
   factory _$HeaderSimplifiedTaxInvoiceModelImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -308,10 +323,13 @@ class _$HeaderSimplifiedTaxInvoiceModelImpl
   @override
   @JsonKey(name: 'docu_date')
   final String? docuDate;
+  @override
+  @JsonKey(name: 'machine_name')
+  final String? machineName;
 
   @override
   String toString() {
-    return 'HeaderSimplifiedTaxInvoiceModel(title: $title, companyLogoImageNetwork: $companyLogoImageNetwork, companyName: $companyName, companyAddress: $companyAddress, companyPhoneNumber: $companyPhoneNumber, companyTaxId: $companyTaxId, employeeName: $employeeName, customerName: $customerName, tableNumber: $tableNumber, docuNo: $docuNo, docuDate: $docuDate)';
+    return 'HeaderSimplifiedTaxInvoiceModel(title: $title, companyLogoImageNetwork: $companyLogoImageNetwork, companyName: $companyName, companyAddress: $companyAddress, companyPhoneNumber: $companyPhoneNumber, companyTaxId: $companyTaxId, employeeName: $employeeName, customerName: $customerName, tableNumber: $tableNumber, docuNo: $docuNo, docuDate: $docuDate, machineName: $machineName)';
   }
 
   @override
@@ -339,7 +357,9 @@ class _$HeaderSimplifiedTaxInvoiceModelImpl
                 other.tableNumber == tableNumber) &&
             (identical(other.docuNo, docuNo) || other.docuNo == docuNo) &&
             (identical(other.docuDate, docuDate) ||
-                other.docuDate == docuDate));
+                other.docuDate == docuDate) &&
+            (identical(other.machineName, machineName) ||
+                other.machineName == machineName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -356,7 +376,8 @@ class _$HeaderSimplifiedTaxInvoiceModelImpl
       customerName,
       tableNumber,
       docuNo,
-      docuDate);
+      docuDate,
+      machineName);
 
   /// Create a copy of HeaderSimplifiedTaxInvoiceModel
   /// with the given fields replaced by the non-null parameter values.
@@ -390,8 +411,9 @@ abstract class _HeaderSimplifiedTaxInvoiceModel
       @JsonKey(name: 'customer_name') final String? customerName,
       @JsonKey(name: 'table_number') final String? tableNumber,
       @JsonKey(name: 'docu_no') final String? docuNo,
-      @JsonKey(name: 'docu_date')
-      final String? docuDate}) = _$HeaderSimplifiedTaxInvoiceModelImpl;
+      @JsonKey(name: 'docu_date') final String? docuDate,
+      @JsonKey(name: 'machine_name')
+      final String? machineName}) = _$HeaderSimplifiedTaxInvoiceModelImpl;
 
   factory _HeaderSimplifiedTaxInvoiceModel.fromJson(Map<String, dynamic> json) =
       _$HeaderSimplifiedTaxInvoiceModelImpl.fromJson;
@@ -429,6 +451,9 @@ abstract class _HeaderSimplifiedTaxInvoiceModel
   @override
   @JsonKey(name: 'docu_date')
   String? get docuDate;
+  @override
+  @JsonKey(name: 'machine_name')
+  String? get machineName;
 
   /// Create a copy of HeaderSimplifiedTaxInvoiceModel
   /// with the given fields replaced by the non-null parameter values.
