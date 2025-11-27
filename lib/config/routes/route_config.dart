@@ -10,9 +10,12 @@ class Routes {
   //full_tax_invoice
   static const String fullTaxInvoiceScreen = '/full_tax_invoice';
   //ReportSaleByGroupSavetime
-  static const String reportSaleByGroupSavetimeScreen = '/report_sale_by_group_savetime';
+  static const String reportSaleByGroupSavetimeScreen =
+      '/report_sale_by_group_savetime';
   //CheckBalance
   static const String checkBalanceScreen = '/check_balance';
   //OrderHistory
   static const String orderHistoryScreen = '/order_history';
+  //RetailHistory
+  static const String retailHistoryScreen = '/retail_history';
 }

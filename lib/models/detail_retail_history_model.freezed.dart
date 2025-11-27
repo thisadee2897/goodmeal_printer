@@ -1,0 +1,754 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'detail_retail_history_model.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+DetailRetailHistoryModel _$DetailRetailHistoryModelFromJson(
+    Map<String, dynamic> json) {
+  return _DetailRetailHistoryModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DetailRetailHistoryModel {
+  @JsonKey(name: 'list_no')
+  num? get listNo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'item_name')
+  String? get itemName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'unit_price')
+  num? get unitPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quantity')
+  num? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'amount')
+  num? get amount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'save_time')
+  String? get saveTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'savename')
+  String? get saveName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cancel_time')
+  String? get cancelTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cancelname')
+  String? get cancelName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cancel_remark')
+  String? get cancelRemark => throw _privateConstructorUsedError;
+  @JsonKey(name: 'orderdt_type')
+  num? get orderdtType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'orderdt_status')
+  num? get orderdtStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cancel_qty')
+  num? get cancelQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'from_table')
+  String? get fromTableName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_from')
+  String? get moveFromName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_from_time')
+  String? get moveFromTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_remart')
+  String? get moveRemark => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_src')
+  String? get orderSrc => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_table')
+  String? get moveTableName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_name')
+  String? get moveName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_time')
+  String? get moveTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'out_remark')
+  String? get outRemark => throw _privateConstructorUsedError;
+  @JsonKey(name: 'move_qty')
+  num? get moveQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_desc')
+  String? get orderDesc => throw _privateConstructorUsedError;
+
+  /// Serializes this DetailRetailHistoryModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of DetailRetailHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DetailRetailHistoryModelCopyWith<DetailRetailHistoryModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DetailRetailHistoryModelCopyWith<$Res> {
+  factory $DetailRetailHistoryModelCopyWith(DetailRetailHistoryModel value,
+          $Res Function(DetailRetailHistoryModel) then) =
+      _$DetailRetailHistoryModelCopyWithImpl<$Res, DetailRetailHistoryModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'list_no') num? listNo,
+      @JsonKey(name: 'item_name') String? itemName,
+      @JsonKey(name: 'unit_price') num? unitPrice,
+      @JsonKey(name: 'quantity') num? quantity,
+      @JsonKey(name: 'amount') num? amount,
+      @JsonKey(name: 'save_time') String? saveTime,
+      @JsonKey(name: 'savename') String? saveName,
+      @JsonKey(name: 'cancel_time') String? cancelTime,
+      @JsonKey(name: 'cancelname') String? cancelName,
+      @JsonKey(name: 'cancel_remark') String? cancelRemark,
+      @JsonKey(name: 'orderdt_type') num? orderdtType,
+      @JsonKey(name: 'orderdt_status') num? orderdtStatus,
+      @JsonKey(name: 'cancel_qty') num? cancelQty,
+      @JsonKey(name: 'from_table') String? fromTableName,
+      @JsonKey(name: 'move_from') String? moveFromName,
+      @JsonKey(name: 'move_from_time') String? moveFromTime,
+      @JsonKey(name: 'move_remart') String? moveRemark,
+      @JsonKey(name: 'order_src') String? orderSrc,
+      @JsonKey(name: 'move_table') String? moveTableName,
+      @JsonKey(name: 'move_name') String? moveName,
+      @JsonKey(name: 'move_time') String? moveTime,
+      @JsonKey(name: 'out_remark') String? outRemark,
+      @JsonKey(name: 'move_qty') num? moveQty,
+      @JsonKey(name: 'order_desc') String? orderDesc});
+}
+
+/// @nodoc
+class _$DetailRetailHistoryModelCopyWithImpl<$Res,
+        $Val extends DetailRetailHistoryModel>
+    implements $DetailRetailHistoryModelCopyWith<$Res> {
+  _$DetailRetailHistoryModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of DetailRetailHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listNo = freezed,
+    Object? itemName = freezed,
+    Object? unitPrice = freezed,
+    Object? quantity = freezed,
+    Object? amount = freezed,
+    Object? saveTime = freezed,
+    Object? saveName = freezed,
+    Object? cancelTime = freezed,
+    Object? cancelName = freezed,
+    Object? cancelRemark = freezed,
+    Object? orderdtType = freezed,
+    Object? orderdtStatus = freezed,
+    Object? cancelQty = freezed,
+    Object? fromTableName = freezed,
+    Object? moveFromName = freezed,
+    Object? moveFromTime = freezed,
+    Object? moveRemark = freezed,
+    Object? orderSrc = freezed,
+    Object? moveTableName = freezed,
+    Object? moveName = freezed,
+    Object? moveTime = freezed,
+    Object? outRemark = freezed,
+    Object? moveQty = freezed,
+    Object? orderDesc = freezed,
+  }) {
+    return _then(_value.copyWith(
+      listNo: freezed == listNo
+          ? _value.listNo
+          : listNo // ignore: cast_nullable_to_non_nullable
+              as num?,
+      itemName: freezed == itemName
+          ? _value.itemName
+          : itemName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitPrice: freezed == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amount: freezed == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      saveTime: freezed == saveTime
+          ? _value.saveTime
+          : saveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saveName: freezed == saveName
+          ? _value.saveName
+          : saveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelTime: freezed == cancelTime
+          ? _value.cancelTime
+          : cancelTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelName: freezed == cancelName
+          ? _value.cancelName
+          : cancelName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelRemark: freezed == cancelRemark
+          ? _value.cancelRemark
+          : cancelRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderdtType: freezed == orderdtType
+          ? _value.orderdtType
+          : orderdtType // ignore: cast_nullable_to_non_nullable
+              as num?,
+      orderdtStatus: freezed == orderdtStatus
+          ? _value.orderdtStatus
+          : orderdtStatus // ignore: cast_nullable_to_non_nullable
+              as num?,
+      cancelQty: freezed == cancelQty
+          ? _value.cancelQty
+          : cancelQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      fromTableName: freezed == fromTableName
+          ? _value.fromTableName
+          : fromTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromName: freezed == moveFromName
+          ? _value.moveFromName
+          : moveFromName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromTime: freezed == moveFromTime
+          ? _value.moveFromTime
+          : moveFromTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveRemark: freezed == moveRemark
+          ? _value.moveRemark
+          : moveRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderSrc: freezed == orderSrc
+          ? _value.orderSrc
+          : orderSrc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTableName: freezed == moveTableName
+          ? _value.moveTableName
+          : moveTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveName: freezed == moveName
+          ? _value.moveName
+          : moveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTime: freezed == moveTime
+          ? _value.moveTime
+          : moveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      outRemark: freezed == outRemark
+          ? _value.outRemark
+          : outRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveQty: freezed == moveQty
+          ? _value.moveQty
+          : moveQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      orderDesc: freezed == orderDesc
+          ? _value.orderDesc
+          : orderDesc // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DetailRetailHistoryModelImplCopyWith<$Res>
+    implements $DetailRetailHistoryModelCopyWith<$Res> {
+  factory _$$DetailRetailHistoryModelImplCopyWith(
+          _$DetailRetailHistoryModelImpl value,
+          $Res Function(_$DetailRetailHistoryModelImpl) then) =
+      __$$DetailRetailHistoryModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'list_no') num? listNo,
+      @JsonKey(name: 'item_name') String? itemName,
+      @JsonKey(name: 'unit_price') num? unitPrice,
+      @JsonKey(name: 'quantity') num? quantity,
+      @JsonKey(name: 'amount') num? amount,
+      @JsonKey(name: 'save_time') String? saveTime,
+      @JsonKey(name: 'savename') String? saveName,
+      @JsonKey(name: 'cancel_time') String? cancelTime,
+      @JsonKey(name: 'cancelname') String? cancelName,
+      @JsonKey(name: 'cancel_remark') String? cancelRemark,
+      @JsonKey(name: 'orderdt_type') num? orderdtType,
+      @JsonKey(name: 'orderdt_status') num? orderdtStatus,
+      @JsonKey(name: 'cancel_qty') num? cancelQty,
+      @JsonKey(name: 'from_table') String? fromTableName,
+      @JsonKey(name: 'move_from') String? moveFromName,
+      @JsonKey(name: 'move_from_time') String? moveFromTime,
+      @JsonKey(name: 'move_remart') String? moveRemark,
+      @JsonKey(name: 'order_src') String? orderSrc,
+      @JsonKey(name: 'move_table') String? moveTableName,
+      @JsonKey(name: 'move_name') String? moveName,
+      @JsonKey(name: 'move_time') String? moveTime,
+      @JsonKey(name: 'out_remark') String? outRemark,
+      @JsonKey(name: 'move_qty') num? moveQty,
+      @JsonKey(name: 'order_desc') String? orderDesc});
+}
+
+/// @nodoc
+class __$$DetailRetailHistoryModelImplCopyWithImpl<$Res>
+    extends _$DetailRetailHistoryModelCopyWithImpl<$Res,
+        _$DetailRetailHistoryModelImpl>
+    implements _$$DetailRetailHistoryModelImplCopyWith<$Res> {
+  __$$DetailRetailHistoryModelImplCopyWithImpl(
+      _$DetailRetailHistoryModelImpl _value,
+      $Res Function(_$DetailRetailHistoryModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DetailRetailHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listNo = freezed,
+    Object? itemName = freezed,
+    Object? unitPrice = freezed,
+    Object? quantity = freezed,
+    Object? amount = freezed,
+    Object? saveTime = freezed,
+    Object? saveName = freezed,
+    Object? cancelTime = freezed,
+    Object? cancelName = freezed,
+    Object? cancelRemark = freezed,
+    Object? orderdtType = freezed,
+    Object? orderdtStatus = freezed,
+    Object? cancelQty = freezed,
+    Object? fromTableName = freezed,
+    Object? moveFromName = freezed,
+    Object? moveFromTime = freezed,
+    Object? moveRemark = freezed,
+    Object? orderSrc = freezed,
+    Object? moveTableName = freezed,
+    Object? moveName = freezed,
+    Object? moveTime = freezed,
+    Object? outRemark = freezed,
+    Object? moveQty = freezed,
+    Object? orderDesc = freezed,
+  }) {
+    return _then(_$DetailRetailHistoryModelImpl(
+      listNo: freezed == listNo
+          ? _value.listNo
+          : listNo // ignore: cast_nullable_to_non_nullable
+              as num?,
+      itemName: freezed == itemName
+          ? _value.itemName
+          : itemName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitPrice: freezed == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amount: freezed == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      saveTime: freezed == saveTime
+          ? _value.saveTime
+          : saveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saveName: freezed == saveName
+          ? _value.saveName
+          : saveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelTime: freezed == cancelTime
+          ? _value.cancelTime
+          : cancelTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelName: freezed == cancelName
+          ? _value.cancelName
+          : cancelName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelRemark: freezed == cancelRemark
+          ? _value.cancelRemark
+          : cancelRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderdtType: freezed == orderdtType
+          ? _value.orderdtType
+          : orderdtType // ignore: cast_nullable_to_non_nullable
+              as num?,
+      orderdtStatus: freezed == orderdtStatus
+          ? _value.orderdtStatus
+          : orderdtStatus // ignore: cast_nullable_to_non_nullable
+              as num?,
+      cancelQty: freezed == cancelQty
+          ? _value.cancelQty
+          : cancelQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      fromTableName: freezed == fromTableName
+          ? _value.fromTableName
+          : fromTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromName: freezed == moveFromName
+          ? _value.moveFromName
+          : moveFromName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveFromTime: freezed == moveFromTime
+          ? _value.moveFromTime
+          : moveFromTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveRemark: freezed == moveRemark
+          ? _value.moveRemark
+          : moveRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderSrc: freezed == orderSrc
+          ? _value.orderSrc
+          : orderSrc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTableName: freezed == moveTableName
+          ? _value.moveTableName
+          : moveTableName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveName: freezed == moveName
+          ? _value.moveName
+          : moveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveTime: freezed == moveTime
+          ? _value.moveTime
+          : moveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      outRemark: freezed == outRemark
+          ? _value.outRemark
+          : outRemark // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moveQty: freezed == moveQty
+          ? _value.moveQty
+          : moveQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      orderDesc: freezed == orderDesc
+          ? _value.orderDesc
+          : orderDesc // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DetailRetailHistoryModelImpl implements _DetailRetailHistoryModel {
+  const _$DetailRetailHistoryModelImpl(
+      {@JsonKey(name: 'list_no') this.listNo,
+      @JsonKey(name: 'item_name') this.itemName,
+      @JsonKey(name: 'unit_price') this.unitPrice,
+      @JsonKey(name: 'quantity') this.quantity,
+      @JsonKey(name: 'amount') this.amount,
+      @JsonKey(name: 'save_time') this.saveTime,
+      @JsonKey(name: 'savename') this.saveName,
+      @JsonKey(name: 'cancel_time') this.cancelTime,
+      @JsonKey(name: 'cancelname') this.cancelName,
+      @JsonKey(name: 'cancel_remark') this.cancelRemark,
+      @JsonKey(name: 'orderdt_type') this.orderdtType,
+      @JsonKey(name: 'orderdt_status') this.orderdtStatus,
+      @JsonKey(name: 'cancel_qty') this.cancelQty,
+      @JsonKey(name: 'from_table') this.fromTableName,
+      @JsonKey(name: 'move_from') this.moveFromName,
+      @JsonKey(name: 'move_from_time') this.moveFromTime,
+      @JsonKey(name: 'move_remart') this.moveRemark,
+      @JsonKey(name: 'order_src') this.orderSrc,
+      @JsonKey(name: 'move_table') this.moveTableName,
+      @JsonKey(name: 'move_name') this.moveName,
+      @JsonKey(name: 'move_time') this.moveTime,
+      @JsonKey(name: 'out_remark') this.outRemark,
+      @JsonKey(name: 'move_qty') this.moveQty,
+      @JsonKey(name: 'order_desc') this.orderDesc});
+
+  factory _$DetailRetailHistoryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DetailRetailHistoryModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'list_no')
+  final num? listNo;
+  @override
+  @JsonKey(name: 'item_name')
+  final String? itemName;
+  @override
+  @JsonKey(name: 'unit_price')
+  final num? unitPrice;
+  @override
+  @JsonKey(name: 'quantity')
+  final num? quantity;
+  @override
+  @JsonKey(name: 'amount')
+  final num? amount;
+  @override
+  @JsonKey(name: 'save_time')
+  final String? saveTime;
+  @override
+  @JsonKey(name: 'savename')
+  final String? saveName;
+  @override
+  @JsonKey(name: 'cancel_time')
+  final String? cancelTime;
+  @override
+  @JsonKey(name: 'cancelname')
+  final String? cancelName;
+  @override
+  @JsonKey(name: 'cancel_remark')
+  final String? cancelRemark;
+  @override
+  @JsonKey(name: 'orderdt_type')
+  final num? orderdtType;
+  @override
+  @JsonKey(name: 'orderdt_status')
+  final num? orderdtStatus;
+  @override
+  @JsonKey(name: 'cancel_qty')
+  final num? cancelQty;
+  @override
+  @JsonKey(name: 'from_table')
+  final String? fromTableName;
+  @override
+  @JsonKey(name: 'move_from')
+  final String? moveFromName;
+  @override
+  @JsonKey(name: 'move_from_time')
+  final String? moveFromTime;
+  @override
+  @JsonKey(name: 'move_remart')
+  final String? moveRemark;
+  @override
+  @JsonKey(name: 'order_src')
+  final String? orderSrc;
+  @override
+  @JsonKey(name: 'move_table')
+  final String? moveTableName;
+  @override
+  @JsonKey(name: 'move_name')
+  final String? moveName;
+  @override
+  @JsonKey(name: 'move_time')
+  final String? moveTime;
+  @override
+  @JsonKey(name: 'out_remark')
+  final String? outRemark;
+  @override
+  @JsonKey(name: 'move_qty')
+  final num? moveQty;
+  @override
+  @JsonKey(name: 'order_desc')
+  final String? orderDesc;
+
+  @override
+  String toString() {
+    return 'DetailRetailHistoryModel(listNo: $listNo, itemName: $itemName, unitPrice: $unitPrice, quantity: $quantity, amount: $amount, saveTime: $saveTime, saveName: $saveName, cancelTime: $cancelTime, cancelName: $cancelName, cancelRemark: $cancelRemark, orderdtType: $orderdtType, orderdtStatus: $orderdtStatus, cancelQty: $cancelQty, fromTableName: $fromTableName, moveFromName: $moveFromName, moveFromTime: $moveFromTime, moveRemark: $moveRemark, orderSrc: $orderSrc, moveTableName: $moveTableName, moveName: $moveName, moveTime: $moveTime, outRemark: $outRemark, moveQty: $moveQty, orderDesc: $orderDesc)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DetailRetailHistoryModelImpl &&
+            (identical(other.listNo, listNo) || other.listNo == listNo) &&
+            (identical(other.itemName, itemName) ||
+                other.itemName == itemName) &&
+            (identical(other.unitPrice, unitPrice) ||
+                other.unitPrice == unitPrice) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.saveTime, saveTime) ||
+                other.saveTime == saveTime) &&
+            (identical(other.saveName, saveName) ||
+                other.saveName == saveName) &&
+            (identical(other.cancelTime, cancelTime) ||
+                other.cancelTime == cancelTime) &&
+            (identical(other.cancelName, cancelName) ||
+                other.cancelName == cancelName) &&
+            (identical(other.cancelRemark, cancelRemark) ||
+                other.cancelRemark == cancelRemark) &&
+            (identical(other.orderdtType, orderdtType) ||
+                other.orderdtType == orderdtType) &&
+            (identical(other.orderdtStatus, orderdtStatus) ||
+                other.orderdtStatus == orderdtStatus) &&
+            (identical(other.cancelQty, cancelQty) ||
+                other.cancelQty == cancelQty) &&
+            (identical(other.fromTableName, fromTableName) ||
+                other.fromTableName == fromTableName) &&
+            (identical(other.moveFromName, moveFromName) ||
+                other.moveFromName == moveFromName) &&
+            (identical(other.moveFromTime, moveFromTime) ||
+                other.moveFromTime == moveFromTime) &&
+            (identical(other.moveRemark, moveRemark) ||
+                other.moveRemark == moveRemark) &&
+            (identical(other.orderSrc, orderSrc) ||
+                other.orderSrc == orderSrc) &&
+            (identical(other.moveTableName, moveTableName) ||
+                other.moveTableName == moveTableName) &&
+            (identical(other.moveName, moveName) ||
+                other.moveName == moveName) &&
+            (identical(other.moveTime, moveTime) ||
+                other.moveTime == moveTime) &&
+            (identical(other.outRemark, outRemark) ||
+                other.outRemark == outRemark) &&
+            (identical(other.moveQty, moveQty) || other.moveQty == moveQty) &&
+            (identical(other.orderDesc, orderDesc) ||
+                other.orderDesc == orderDesc));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        listNo,
+        itemName,
+        unitPrice,
+        quantity,
+        amount,
+        saveTime,
+        saveName,
+        cancelTime,
+        cancelName,
+        cancelRemark,
+        orderdtType,
+        orderdtStatus,
+        cancelQty,
+        fromTableName,
+        moveFromName,
+        moveFromTime,
+        moveRemark,
+        orderSrc,
+        moveTableName,
+        moveName,
+        moveTime,
+        outRemark,
+        moveQty,
+        orderDesc
+      ]);
+
+  /// Create a copy of DetailRetailHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DetailRetailHistoryModelImplCopyWith<_$DetailRetailHistoryModelImpl>
+      get copyWith => __$$DetailRetailHistoryModelImplCopyWithImpl<
+          _$DetailRetailHistoryModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DetailRetailHistoryModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DetailRetailHistoryModel implements DetailRetailHistoryModel {
+  const factory _DetailRetailHistoryModel(
+          {@JsonKey(name: 'list_no') final num? listNo,
+          @JsonKey(name: 'item_name') final String? itemName,
+          @JsonKey(name: 'unit_price') final num? unitPrice,
+          @JsonKey(name: 'quantity') final num? quantity,
+          @JsonKey(name: 'amount') final num? amount,
+          @JsonKey(name: 'save_time') final String? saveTime,
+          @JsonKey(name: 'savename') final String? saveName,
+          @JsonKey(name: 'cancel_time') final String? cancelTime,
+          @JsonKey(name: 'cancelname') final String? cancelName,
+          @JsonKey(name: 'cancel_remark') final String? cancelRemark,
+          @JsonKey(name: 'orderdt_type') final num? orderdtType,
+          @JsonKey(name: 'orderdt_status') final num? orderdtStatus,
+          @JsonKey(name: 'cancel_qty') final num? cancelQty,
+          @JsonKey(name: 'from_table') final String? fromTableName,
+          @JsonKey(name: 'move_from') final String? moveFromName,
+          @JsonKey(name: 'move_from_time') final String? moveFromTime,
+          @JsonKey(name: 'move_remart') final String? moveRemark,
+          @JsonKey(name: 'order_src') final String? orderSrc,
+          @JsonKey(name: 'move_table') final String? moveTableName,
+          @JsonKey(name: 'move_name') final String? moveName,
+          @JsonKey(name: 'move_time') final String? moveTime,
+          @JsonKey(name: 'out_remark') final String? outRemark,
+          @JsonKey(name: 'move_qty') final num? moveQty,
+          @JsonKey(name: 'order_desc') final String? orderDesc}) =
+      _$DetailRetailHistoryModelImpl;
+
+  factory _DetailRetailHistoryModel.fromJson(Map<String, dynamic> json) =
+      _$DetailRetailHistoryModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'list_no')
+  num? get listNo;
+  @override
+  @JsonKey(name: 'item_name')
+  String? get itemName;
+  @override
+  @JsonKey(name: 'unit_price')
+  num? get unitPrice;
+  @override
+  @JsonKey(name: 'quantity')
+  num? get quantity;
+  @override
+  @JsonKey(name: 'amount')
+  num? get amount;
+  @override
+  @JsonKey(name: 'save_time')
+  String? get saveTime;
+  @override
+  @JsonKey(name: 'savename')
+  String? get saveName;
+  @override
+  @JsonKey(name: 'cancel_time')
+  String? get cancelTime;
+  @override
+  @JsonKey(name: 'cancelname')
+  String? get cancelName;
+  @override
+  @JsonKey(name: 'cancel_remark')
+  String? get cancelRemark;
+  @override
+  @JsonKey(name: 'orderdt_type')
+  num? get orderdtType;
+  @override
+  @JsonKey(name: 'orderdt_status')
+  num? get orderdtStatus;
+  @override
+  @JsonKey(name: 'cancel_qty')
+  num? get cancelQty;
+  @override
+  @JsonKey(name: 'from_table')
+  String? get fromTableName;
+  @override
+  @JsonKey(name: 'move_from')
+  String? get moveFromName;
+  @override
+  @JsonKey(name: 'move_from_time')
+  String? get moveFromTime;
+  @override
+  @JsonKey(name: 'move_remart')
+  String? get moveRemark;
+  @override
+  @JsonKey(name: 'order_src')
+  String? get orderSrc;
+  @override
+  @JsonKey(name: 'move_table')
+  String? get moveTableName;
+  @override
+  @JsonKey(name: 'move_name')
+  String? get moveName;
+  @override
+  @JsonKey(name: 'move_time')
+  String? get moveTime;
+  @override
+  @JsonKey(name: 'out_remark')
+  String? get outRemark;
+  @override
+  @JsonKey(name: 'move_qty')
+  num? get moveQty;
+  @override
+  @JsonKey(name: 'order_desc')
+  String? get orderDesc;
+
+  /// Create a copy of DetailRetailHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DetailRetailHistoryModelImplCopyWith<_$DetailRetailHistoryModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

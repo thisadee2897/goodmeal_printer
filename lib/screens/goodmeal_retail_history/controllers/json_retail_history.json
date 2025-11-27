@@ -1,0 +1,103 @@
+[
+    {
+        "header": {
+            "title": "ใบกำกับภาษีอย่างย่อ/ใบเสร็จรับเงิน",
+            "company_logo_image_network": null,
+            "company_name": "(UAT) เทสระบบ 5",
+            "company_address": "99-5 แขวงดุสิต เขตดุสิต กรุงเทพมหานคร 10300",
+            "company_phone_number": "026361999",
+            "company_tax_id": "0105566144399",
+            "employee_name": "Admin Kinn แจ้งวัฒนะ",
+            "customer_name": "ลูกค้าเงินสด",
+            "table_number": null,
+            "docu_no": "ABB2025103100001",
+            "docu_date": "2025-10-31T00:00:00Z",
+            "machine_name": "แคชเชียร์ 2"
+        },
+        "details": [
+            {
+                "list_no": 1,
+                "item_name": "Lunch Set",
+                "unit_price": 200,
+                "quantity": 1,
+                "amount": 200,
+                "save_time": "2025-10-31 11:49:07",
+                "savename": "Admin",
+                "cancel_time": "",
+                "cancelname": "",
+                "cancel_remark": "",
+                "orderdt_type": 1,
+                "orderdt_status": 4,
+                "cancel_qty": 0,
+                "from_table": "",
+                "move_from": "",
+                "move_from_time": "",
+                "move_remart": "",
+                "order_src": "",
+                "move_table": "",
+                "move_name": "",
+                "move_time": "",
+                "out_remark": "",
+                "move_qty": 0,
+                "order_desc": ""
+            },
+            {
+                "list_no": 2,
+                "item_name": "่ Jug น้ำชา",
+                "unit_price": 0,
+                "quantity": 1,
+                "amount": 0,
+                "save_time": "2025-10-31 11:49:07",
+                "savename": "Admin",
+                "cancel_time": "",
+                "cancelname": "",
+                "cancel_remark": "",
+                "orderdt_type": 1,
+                "orderdt_status": 4,
+                "cancel_qty": 0,
+                "from_table": "",
+                "move_from": "",
+                "move_from_time": "",
+                "move_remart": "",
+                "order_src": "",
+                "move_table": "",
+                "move_name": "",
+                "move_time": "",
+                "out_remark": "",
+                "move_qty": 0,
+                "order_desc": ""
+            }
+        ],
+        "footer": {
+            "total_items": 2,
+            "total_amount": 200,
+            "service_charge": 20,
+            "discounts": [],
+            "total_discount": 0,
+            "vat_included": 14.39,
+            "net_amount": 220,
+            "cash_received": 0,
+            "change": 80,
+            "payment_methods": [
+                {
+                    "amount": 300,
+                    "payment_method": "เงินสด"
+                }
+            ],
+            "categories": [
+                {
+                    "category_name": "อาหารเซ็ต",
+                    "quantity": 1,
+                    "amount": 200
+                },
+                {
+                    "category_name": "เครื่องดื่ม",
+                    "quantity": 1,
+                    "amount": 0
+                }
+            ],
+            "total_categories_amount": 200,
+            "points": []
+        }
+    }
+]

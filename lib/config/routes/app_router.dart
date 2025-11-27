@@ -16,6 +16,8 @@ import 'package:goodmeal_printer/screens/goodmeal_simplified_tax_invoice/control
 import 'package:goodmeal_printer/screens/goodmeal_simplified_tax_invoice/views/report_simplified_tax_invoice_screen.dart';
 import 'package:goodmeal_printer/screens/goodmeal_report_sale_by_group_savetime/controllers/providers/report_sale_by_group_savetime.dart';
 import 'package:goodmeal_printer/screens/goodmeal_report_sale_by_group_savetime/views/report_simplified_tax_invoice_screen.dart';
+import 'package:goodmeal_printer/screens/goodmeal_retail_history/controllers/providers/retail_history_controller.dart';
+import 'package:goodmeal_printer/screens/goodmeal_retail_history/views/retail_history_screen.dart';
 import 'route_config.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -366,6 +368,56 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         },
         pageBuilder: (context, state) {
           return const NoTransitionPage(child: OrderHistoryScreen());
+        },
+      ),
+      GoRoute(
+        path: Routes.retailHistoryScreen,
+        redirect: (context, state) {
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
+              try {
+                // Step 1: ดึงค่าพารามิเตอร์จาก URL
+                final salehdIdBase64List =
+                    state.uri.queryParametersAll['c2FsZWhkX2lk'] ?? [];
+                if (kDebugMode)
+                  print('salehdIdBase64List: $salehdIdBase64List');
+                List<int> salehdIds =
+                    salehdIdBase64List
+                        .map(
+                          (b64) => int.tryParse(utf8.decode(base64Decode(b64))),
+                        )
+                        .whereType<int>() // กรองค่า null ออก
+                        .toList();
+                if (kDebugMode) print('salehdIds: $salehdIds');
+                // Step 2: ดึงค่า แปลงจาก base64 เป็น id ปกติ
+                final companyIdBase64 =
+                    state.uri.queryParameters['Y29tcGFueV9pZA'] ?? '';
+                if (kDebugMode) print('companyIdBase64: $companyIdBase64');
+                String companyId = idFormBase64(id: companyIdBase64);
+                if (kDebugMode) print('companyId: $companyId');
+                // Step 3: เรียกใช้งานฟังก์ชัน get() พร้อมส่งพารามิเตอร์
+                await ref
+                    .read(retailHistoriesProvider.notifier)
+                    .get(
+                      body: {
+                        "salehd_id": salehdIds.toList(),
+                        "company_id": int.parse(companyId),
+                      },
+                    );
+              } catch (e, stx) {
+                if (kDebugMode) print('error: $e');
+                if (kDebugMode) print('stackTrace: $stx');
+                ref.read(routerHelperProvider).goPath('/error');
+                if (kDebugMode) print('error: $e');
+                return;
+              }
+            });
+            return;
+          });
+          return;
+        },
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(child: RetailHistoryScreen());
         },
       ),
     ],
